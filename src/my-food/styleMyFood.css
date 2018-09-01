@@ -1,0 +1,8 @@
+.my-food {
+    opacity: 0;
+}
+
+.show-my-food-page {
+    opacity: 1;
+    transition: opacity .3s;
+}

@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+:root {
+  --blue: #569cd6;
+  --yellow: #dcdc9c;
+  --teal: #1eb899;
+  --orange: #ce9178;
+  --gray: #dcd4d4;
+  --purple: #7537da;
+  --home: #569cd6;
+  --skills: #4ec9b0;
+  --projects: #ce9178;
+  --contact: #dcdc9c;
+}

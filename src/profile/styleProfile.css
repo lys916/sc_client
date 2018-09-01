@@ -1,0 +1,7 @@
+.profile {
+    opacity: 0;
+}
+.show-profile-page {
+    opacity: 1;
+    transition: opacity .3s;
+}
