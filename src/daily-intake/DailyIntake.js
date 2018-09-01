@@ -5,7 +5,7 @@ import FoodIntake from './FoodIntake';
 import GoalIntake from './GoalIntake';
 import { Button, Modal } from 'react-bootstrap';
 import FoodModal from './FoodModal';
-import Tabs from '../tabs/Tabs';
+import DailyDate from './DailyDate';
 import { addToDaily, deleteFood} from '../actions/foodAction';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -111,7 +111,7 @@ class DailyIntake extends React.Component {
 		})
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-				
+				<DailyDate />
                 <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal}/>
                 <AmountIntake fat={fat} carb={carb} protein={protein}/>
 				<div className="my-daily-intake">

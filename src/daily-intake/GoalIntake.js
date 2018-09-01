@@ -3,10 +3,7 @@ import React from 'react';
 const GoalIntake = ({fat, carb, protein})=>{
     const consumed = Math.round((fat*9)+(carb*4)+(protein*4));
     return (
-        <div>
-            <div className="date-box">
-                <div className="current-date">August 31st</div>
-            </div>
+        <div className="testss">
             <div className="goal-total-cal">Daily Calories</div>
             <div className="goal-intake">
                 
