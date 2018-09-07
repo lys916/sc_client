@@ -85,7 +85,7 @@ const dailyFoodIntakeReducer = (state = [], action) => {
 	switch (action.type) {
 
 		case 'GOT_DAILY_FOODS': 
-			return state.concat(action.payload);
+			return action.payload;
 
 		case 'ADDED_TO_DAILY':
 			return state.concat(action.payload);
