@@ -6,3 +6,113 @@
     opacity: 1;
     transition: opacity .3s;
 }
+
+.my-food .search-food {
+    background: rgb(149, 149, 149);
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+.search-food .food-title {
+    background: var(--blue_d);
+    font-size: 18px;
+    color: white;
+    padding: 3px;
+}
+.my-food form {
+    padding: 5px;
+}
+
+form .search-input {
+    width: 100%;
+    font-size: 20px;
+    padding: 3px;
+    margin-top: 18px;
+}
+
+form .amount {
+    display: flex;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+form .amount-text {
+    padding-top: 4px;
+}
+
+form .amount input {
+    width: 90px;
+    margin-right: 5px;
+}
+
+.drop-down .food{
+    text-align: left;
+    background: white;
+    font-size: 17px;
+    padding: 3px;
+    border-top: 1px solid #dedede;
+    margin: 0px 5px;
+}
+
+.drop-down .food:hover{
+    background: #dedede;
+    cursor: pointer;
+}
+.my-food .nutritients {
+    display: flex;
+    margin: 5px;
+    font-size: 17px;
+}
+.nutritients .nutrient {
+    width: 100%;
+    border-right: 1px solid #dedede;
+}
+.my-food .create-button {
+    font-size: 22px;
+    background: rgb(25, 158, 2);
+    font-size: 18px;
+    color: white;
+    padding: 5px 15px;
+    width: 40%;
+    margin: 20px auto 0px auto;
+
+}
+.my-food .cancel-button {
+    font-size: 22px;
+    background: rgb(241, 241, 241);
+    font-size: 18px;
+    padding: 5px 15px;
+    width: 40%;
+    margin: 20px auto 0px auto;
+
+}
+.my-food .create-button:hover{
+    background: rgb(20, 136, 0);
+    color: white;
+}
+
+.nutritients .nutrient .title {
+    border-bottom: 1px solid #dedede;
+    background: white;
+    width: 100%;
+}
+.nutritients .nutrient .amount {
+    background: white;
+}
+
+/* FROM SCRATCH FOOD */
+.nutrient .amount input {
+    width: 100%;
+}
+
+/* CUSTOM FOOD COMPONENT */
+.my-food .custom-foods {
+    /* margin-top: 20px; */
+}
+
+.custom-foods .food-title {
+    background: var(--blue_d);
+    font-size: 18px;
+    color: white;
+    padding: 3px;
+}

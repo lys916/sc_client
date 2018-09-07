@@ -1,9 +1,11 @@
 import React from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
-const DailyDate = ()=>{
+const DailyDate = ({dateToFormat})=>{
     return (
         <div className="date-box">
-            <div className="current-date">August 31st</div>
+            <Moment format="ddd MMM Do">{dateToFormat}</Moment>
         </div>
     )
 }

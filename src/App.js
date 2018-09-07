@@ -3,11 +3,14 @@ import MyFood from './my-food/MyFood';
 import Tabs from './tabs/Tabs';
 import Profile from './profile/Profile';
 import Calendar from './calendar/Calendar';
+import Login from './login-signup/Login';
+import Signup from './login-signup/Signup';
 import DailyIntake from './daily-intake/DailyIntake';
 import TestList from './test-components/TestList';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { connect } from 'react-redux';
+import RequireAuth from './HOC/requireAuth';
 
 class App extends Component {
   state = {
@@ -16,10 +19,9 @@ class App extends Component {
     errorMessage: null
   }
 
-  // componentDidMount(){
-  //   const copyFoods = [...this.props.modalCustomFoods];
-  //   this.setState({modalCustomFoods: copyFoods});
-  // }
+  componentDidMount(){
+    console.log('app did mount');
+  }
 
   
 
@@ -30,12 +32,14 @@ class App extends Component {
 
         <Router>
           <div>
-            <Route path='/myfood' component={MyFood} />
-            <Route path='/' exact component={DailyIntake} />
-            <Route path='/test' component={TestList} />
-            <Route path='/' component={Tabs} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/calendar' component={Calendar} />
+            <Route path='/myfood' component={RequireAuth(MyFood)} />
+            <Route path='/' exact component={RequireAuth(DailyIntake)} />
+            <Route path='/test' component={RequireAuth(TestList)} />
+            <Route path='/profile' component={RequireAuth(Profile)} />
+            <Route path='/calendar' component={RequireAuth(Calendar)} />
+            <Route path="/" component={Tabs} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/signup' exact component={Signup} />
           </div>
         </Router>
 

@@ -11,14 +11,21 @@
 
 /* GOAL INTAKE */
 .goal-total-cal {
-    background: rgb(16, 39, 117);
+    background: var(--blue_d);
     color: white;
     padding: 4px;
     font-size: 17px;
+    position: relative;
+}
+.goal-total-cal .username {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }
 .goal-intake {
     color: white;
-    background: rgb(24, 57, 163);
+    background: var(--blue_l);
     display: flex;
     justify-content: space-around;
 }
@@ -32,6 +39,20 @@
 }
 .in-amount {
     font-size: 16px;
+}
+
+.set-goal {
+    background: var(--blue_l);
+    color: white;
+    padding: 5px;
+}
+.set-my-goal {
+    width: 30vw;
+    margin: 10px auto;
+    background: green;
+    font-size: 18px;
+    padding: 5px;
+
 }
 
 
@@ -300,3 +321,91 @@
     background: rgb(0, 75, 136);
     color: white;
 }
+
+/* GOAL MODAL */
+.goal-modal .gender {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.gender input {
+    width: 62px;
+    margin-left: 10px;
+}
+.goal-modal .weight {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.weight input {
+    width: 84px;
+    padding: 1px 3px;
+}
+.weight span{
+    font-size: 15px;
+    padding: 3px 8px;
+    margin-right: 5px;
+}
+.goal-modal .height {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 16px; 
+}
+
+.height .select-feet {
+    width: 84px;
+    margin-right: 10px;
+    padding: 3px 0px;
+}
+
+.height .select-inch {
+    width: 62px;
+}
+
+.select-goal {
+    margin-bottom:10px;
+    font-size: 16px;
+    padding: 3px 0px;
+}
+.select-exercise {
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 3px 0px;
+    width: 100%;
+}
+.select-training {
+    margin-bottom:10px;
+    font-size: 16px;
+    padding: 3px 0px;
+    width: 100%;
+}
+
+.goal-modal Button {
+    font-size: 16px;
+    margin:10px 0px 20px 0px;
+    background: #dedede;
+}
+.modal-nuts {
+    display: flex;  
+}
+.modal-nuts .nut {
+    margin: 10px 10px 10px 0px;
+    font-weight: bold;
+}
+.modal-total-cal {
+    font-weight: bold;
+}
+.setgoal-cancel {
+    font-size: 16px;
+    background: #dedede;
+}
+.setgoal-save {
+    background: green;
+    color: white;
+    font-size: 16px;
+}
+.setgoal-save:hover {
+    background: rgb(0, 104, 0);
+    color: white;
+}
+

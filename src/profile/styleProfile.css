@@ -5,3 +5,10 @@
     opacity: 1;
     transition: opacity .3s;
 }
+.profile button {
+    font-size: 18px;
+    background: rgb(221, 119, 119);
+    border: 1px solid #efefef;
+    padding: 3px 10px;
+    color: white;
+}

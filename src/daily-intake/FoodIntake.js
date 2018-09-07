@@ -2,13 +2,12 @@ import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const FoodIntake = (props)=>{
-    console.log('show menu', props.showMenu);
     return (
         <div className="intake-list">
             <TransitionGroup>
             { props.foods.map((food, index)=>{
                 return (
-                    <CSSTransition key={food.id} timeout={300} classNames="fade">
+                    <CSSTransition key={food._id} timeout={300} classNames="fade">
                     <div className="food-intake">
                         <div className="food-header">
                             <div className="food-name">
@@ -36,7 +35,7 @@ const FoodIntake = (props)=>{
                                 <div className={`edit`}>
                                     <i className="material-icons">edit</i>
                                 </div>
-                                <div className={`delete`} onClick={()=>{props.handleDeleteFood(food.id)}}>
+                                <div className={`delete`} onClick={()=>{props.handleDeleteFood(food._id)}}>
                                     <i className="material-icons">delete</i>
                                 </div>
                             </div>

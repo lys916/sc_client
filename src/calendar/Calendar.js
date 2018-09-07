@@ -14,6 +14,7 @@ class Calendar extends React.Component {
 		return (
 			<div className={`calendar ${this.state.showPage ? 'show-calendar-page' : null}`}>
                 CALENDAR
+				<p>Coming soon!</p>
 			</div>
 		)
 	}

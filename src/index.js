@@ -16,10 +16,15 @@ const store = createStore(
 
 ReactDOM.render(
    <Provider store={store}>
-   	<div className="body">
-      	<App />
-      </div>
+        <div className="body">
+            <div className="mobile-version">
+                Desktop version of this app is not available at this time, resize your browser to view in a mobile version.
+            </div>
+            <App />
+        </div>
    </Provider>, 
    document.getElementById('root')
 );
 registerServiceWorker();
+
+

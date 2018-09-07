@@ -3,7 +3,35 @@ body {
   padding: 0;
   font-family: 'Montserrat', sans-serif;
 }
+.body {
+  position: relative;
+}
+
+.mobile-version {
+  position: absolute;
+  text-align: center;
+  color: red;
+  font-size: 25px;
+  width: 100%;
+  padding: 25px;
+  z-index: -1;
+}
+
+@media screen and (max-width: 780px) {
+  .mobile-version {
+    visibility: hidden;
+  }
+
+}
+
+@media screen and (min-width: 780px) {
+  .App {
+      display: none;
+  }
+}
 :root {
+  --blue_d: rgb(16, 39, 117);
+  --blue_l: rgb(24, 57, 163);
   --blue: #569cd6;
   --yellow: #dcdc9c;
   --teal: #1eb899;

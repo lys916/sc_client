@@ -13,6 +13,7 @@ return (
             </Modal.Header>
             <Modal.Body className="food-modal-body">
                 {customFoods.map((food, index)=>{
+                    console.log(food.active);
                     return(
                         <div className="custom-food">
                         <div className="food-header">
@@ -39,9 +40,9 @@ return (
                                 </div>
                                 {   food.editing ? 
                                     <div className="nutrition-amount">
-                                        <input name="fat" className="food-cell" value={food.fat} onChange={(e)=>{handleOnChange(e, index)}}/>
-                                        <input name="carb" className="food-cell" value={food.carb} onChange={(e)=>{handleOnChange(e, index)}}/>
-                                        <input name="protein" className="food-cell" value={food.protein} onChange={(e)=>{handleOnChange(e, index)}}/>
+                                        <input name="fat" className="food-cell" value={food.fat} onChange={(e)=>{handleOnChange(e, food._id)}}/>
+                                        <input name="carb" className="food-cell" value={food.carb} onChange={(e)=>{handleOnChange(e, food._id)}}/>
+                                        <input name="protein" className="food-cell" value={food.protein} onChange={(e)=>{handleOnChange(e, food._id)}}/>
                                     </div> 
                                     : 
                                     <div className="nutrition-amount">
@@ -52,10 +53,10 @@ return (
                                 }
                             </div>
                             <div className="custom-edit-add">
-                                <div className={`custom-edit ${food.editing ? 'food-editing' : null}`} onClick={()=>{toggleEditing(index)}}>
+                                <div className={`custom-edit ${food.editing ? 'food-editing' : null}`} onClick={()=>{toggleEditing(food._id)}}>
                                     <i className="material-icons">edit</i>
                                 </div>
-                                <div className={`custom-add ${food.active ? 'food-active' : null}`} onClick={()=>{toggleActive(index)}}>
+                                <div className={`custom-add ${food.active ? 'food-active' : null}`} onClick={()=>{toggleActive(food._id)}}>
                                     <i className="material-icons">add</i>
                                 </div>
                             </div>

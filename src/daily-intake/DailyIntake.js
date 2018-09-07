@@ -6,19 +6,43 @@ import GoalIntake from './GoalIntake';
 import { Button, Modal } from 'react-bootstrap';
 import FoodModal from './FoodModal';
 import DailyDate from './DailyDate';
-import { addToDaily, deleteFood} from '../actions/foodAction';
+import { searchCustomFoods, addToDaily, deleteFood, getDailyFood, getCustomFoods, toggleActive, toggleEditing, resetToggle, amountOnChange} from '../actions/foodAction';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Moment from 'react-moment';
+import 'moment-timezone';
+import GoalModal from './GoalModal';
+
+function getDateString(){
+	const date = new Date();
+	const day = date.getDate();
+	const month = date.getMonth();
+	const year = date.getFullYear();
+	const currentDate = day.toString() + (month + 1).toString() + year.toString();
+	return currentDate;
+}
 
 class DailyIntake extends React.Component {
 	state = {
 		showMenu: null,
 		showModal: false,
-    	editedCustomFoods: this.props.modalCustomFoods,
 		errorMessage: null,
-		showIntakePage: false
+		showIntakePage: false,
+		currentDate: '',
+		showGoalModal: false
 	}
 
+	// static getDerivedStateFromProps(props, state){
+	// 	alert();
+		
+	// 	// const copyState = props.customFoods.map(food=>{
+	// 	// 	return {...food};
+	// 	// });
+	// 	return {...state, editedCustomFoods: props.customFoods}
+	// }
+
 	componentDidMount(){
+		this.props.getDailyFood(getDateString());
+
 		setTimeout(()=>{
 			this.setState({showIntakePage: true});
 		},0);
@@ -44,63 +68,77 @@ class DailyIntake extends React.Component {
 		this.setState({showModal: true});
 	}
 	handleHideModal = ()=>{
-		this.setState({showModal: false, editedCustomFoods: this.props.modalCustomFoods, errorMessage: null});
+		this.props.resetToggle();
+		this.setState({showModal: false, errorMessage: null});
 	}
 	handleAddToDaily = ()=>{
 		let selected = false;
-		const foods = this.state.editedCustomFoods;
+		const foods = this.props.customFoods;
+		// checking to see if there is any food selected
 		for(let i = 0; i<foods.length; i++){
-		console.log('looking for active');
-		if(foods[i].active){
-			selected = true;
-			break;
+			console.log('looking for active');
+			if(foods[i].active){
+				selected = true;
+				break;
+			}
 		}
-		}
+
 		if(selected){
-		this.props.addToDaily(this.state.editedCustomFoods);
-		this.setState({showModal: false, editedCustomFoods: this.props.modalCustomFoods, errorMessage: null});
+			// parse out the selected food
+			const selectedFoods = []
+			this.props.customFoods.forEach(food=>{
+				if(food.active){
+					selectedFoods.push({
+						name: food.name,
+						measurement: food.measurement,
+						fat: food.fat,
+						carb: food.carb,
+						protein: food.protein,
+						dateString: getDateString()
+					});
+				}
+			});
+			console.log('selected', selectedFoods);
+			this.props.addToDaily(selectedFoods);
+			this.setState({showModal: false, errorMessage: null});
 		}else{
-		this.setState({errorMessage: 'Atleast 1 food must be selected.'});
+			this.setState({errorMessage: 'Atleast 1 food must be selected.'});
 		}
 	}
-	handleToggleEditing = (index)=>{
-	const foodObject = Object.assign({}, this.state.editedCustomFoods[index]);
-	foodObject.editing = !foodObject.editing;
-	const copyFoods = Object.assign([], this.state.editedCustomFoods);
-	copyFoods[index] = foodObject;
-	this.setState({editedCustomFoods: copyFoods});
+
+	// ASSIGN ORIGINAL CUSTOM FOOD TO STATE AT COMPONENT MOUNT TO CLEAN UP THE CODE
+
+	handleToggleEditing = (id)=>{
+		this.props.toggleEditing(id);
 	}
-	handleToggleActive = (index)=>{
-	const foodObject = Object.assign({}, this.state.editedCustomFoods[index]);
-	foodObject.active = !foodObject.active;
-	const copyFoods = Object.assign([], this.state.editedCustomFoods);
-	copyFoods[index] = foodObject;
-	this.setState({editedCustomFoods: copyFoods});
+	handleToggleActive = (id)=>{
+		this.props.toggleActive(id);
 	}
 
-	handleOnChange = (event, index)=>{
-	const copyFood = Object.assign({}, this.state.editedCustomFoods[index]);
-	copyFood[event.target.name] = event.target.value;
-	const copyFoods = Object.assign([], this.state.editedCustomFoods);
-	copyFoods[index] = copyFood;
-
-	this.setState({
-		editedCustomFoods: copyFoods
-	});
-	
+	handleOnChange = (event, id)=>{
+		const data = {
+			name: event.target.name,
+			value: event.target.value,
+			_id: id
+		}
+		this.props.amountOnChange(data);
 	}
 
 	handleSearch = (event)=>{
-	const searchResults = this.props.modalCustomFoods.filter(food=>{
-		if(food.name.toLowerCase().includes(event.target.value)){
-		return food;
-		}
-	});
-	this.setState({editedCustomFoods: searchResults});
+		console.log('handle search custom food', event.target.value);
+		this.props.searchCustomFoods(event.target.value);
 	}
 
+	showGoalModal = ()=>{
+		this.setState({showGoalModal: true});
+	}
+
+	hideGoalModal = ()=>{
+		this.setState({showGoalModal: false});
+	}
+
+
 	render(){
-		console.log('PROPS', this.props);
 		let fat = 0;
 		let carb = 0;
 		let protein = 0;
@@ -109,33 +147,52 @@ class DailyIntake extends React.Component {
 			carb += Number(food.carb);
 			protein += Number(food.protein);
 		})
+
+		// date formatter
+		const dateToFormat = new Date();
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-				<DailyDate />
-                <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal}/>
-                <AmountIntake fat={fat} carb={carb} protein={protein}/>
+				<DailyDate dateToFormat={dateToFormat}/>
+
+                <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
+
+				<AmountIntake 
+					fat={fat} carb={carb} 
+					protein={protein} 
+					user={this.props.user}
+				/>
+
 				<div className="my-daily-intake">
-					My Daily Intake
+					<div>My Daily Intake</div>
 				</div>
 				<div className="tab-tobegin">
 					{this.props.dailyFoodIntake.length < 1 ? 'Tab add button to begin' : null}
 				</div>
-                <FoodIntake handleDeleteFood={this.handleDeleteFood} handleShowMenu={this.handleShowMenu} showMenu={this.state.showMenu} foods={this.props.dailyFoodIntake}/>
+
+				<GoalModal history={this.props.history} user={this.props.user} handleShowGoalModal={this.showGoalModal} handleHideGoalModal={this.hideGoalModal} showGoalModal={this.state.showGoalModal}/>
+
+				<FoodIntake 
+					handleDeleteFood={this.handleDeleteFood} 
+					handleShowMenu={this.handleShowMenu} 
+					showMenu={this.state.showMenu} 
+					foods={this.props.dailyFoodIntake}
+				/>
 				
 				<div className="add-button" onClick={this.handleShowModal}>
 					<i className="material-icons">add</i>
 				</div>
 
 				<FoodModal 
-				toggleActive={this.handleToggleActive} 
-				customFoods={this.state.editedCustomFoods} 
-				showModal={this.state.showModal} 
-				handleHide={this.handleHideModal}
-				addToDaily={this.handleAddToDaily}
-				toggleEditing={this.handleToggleEditing}
-				handleOnChange={this.handleOnChange}
-				errorMessage={this.state.errorMessage}
-				handleSearch={this.handleSearch} />
+					toggleActive={this.handleToggleActive} 
+					customFoods={this.props.customFoods} 
+					showModal={this.state.showModal} 
+					handleHide={this.handleHideModal}
+					addToDaily={this.handleAddToDaily}
+					toggleEditing={this.handleToggleEditing}
+					handleOnChange={this.handleOnChange}
+					errorMessage={this.state.errorMessage}
+					handleSearch={this.handleSearch} 
+				/>
 				
 				<br/><br/><br/><br/><br/>
 				
@@ -145,11 +202,12 @@ class DailyIntake extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('daily intake list', state.dailyFoodIntake);
+	console.log('USER', state.user);
 	return {
 		dailyFoodIntake: state.dailyFoodIntake,
-		modalCustomFoods: state.customFood.modalCustomFoods
+		customFoods: state.customFoods,
+		user: state.user
 	} 
 }
 
-export default connect(mapStateToProps, { deleteFood, addToDaily })(DailyIntake);
+export default connect(mapStateToProps, {toggleEditing, deleteFood, addToDaily, getDailyFood, getCustomFoods, toggleActive, resetToggle, searchCustomFoods, amountOnChange })(DailyIntake);
