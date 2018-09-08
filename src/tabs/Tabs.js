@@ -22,7 +22,8 @@ class Tabs extends React.Component {
 	}
 	
 	render(){
-		if(!this.props.user){
+		console.log('tab user', this.props.user);
+		if(!this.props.user._id){
 			return null;
 		}
 		return (

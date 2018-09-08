@@ -22,16 +22,16 @@ class Login extends React.Component {
   
   render() {
     return (
-      <div className="login">
-        <div className="title">Homechef Login</div>
+      <div className="ls">
+        <div className="title">Log-in</div>
         <input name="name" value={this.state.email} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
 
         <input name="password" type="password" value={this.state.value} 
         placeholder="Password" onChange={this.handleOnChange}/><br />
 
-        <button className="signin" onClick={() => {this.handleSignIn()}}>Sign in</button><br />
-        <div>Don't have an account?</div>
+        <button className="signin" onClick={() => {this.handleSignIn()}}>Submit</button><br />
+        <div className="have-account">Don't have an account?</div>
         <Link to="/signup"><button>Sign up</button></Link><br />
       </div>
     );
