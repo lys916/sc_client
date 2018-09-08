@@ -4,13 +4,11 @@ import { Modal, Button } from 'react-bootstrap';
 const FoodModal = ({showModal, handleHide, customFoods, toggleActive, addToDaily, toggleEditing, handleOnChange, errorMessage, handleSearch})=>{
 return (
         <Modal className="food-modal" show={showModal} onHide={handleHide}>
-            <Modal.Header className="modal-header">
+            {/* <Modal.Header className="modal-header">
                 <input placeholder="Search" onChange={handleSearch}/>
-                <div>{errorMessage}</div>
-                <div className="custom-add-button">
-                    <Button className="add-custom-food" onClick={addToDaily}>Add</Button>
-                </div>
-            </Modal.Header>
+                
+                
+            </Modal.Header> */}
             <Modal.Body className="food-modal-body">
                 {customFoods.map((food, index)=>{
                     console.log(food.active);
@@ -68,7 +66,11 @@ return (
                
             </Modal.Body>
             <Modal.Footer className="modal-footer">
+                <div>{errorMessage}</div>
                 <Button className="footer-button" onClick={handleHide}>Close</Button>
+                <div className="custom-add-button">
+                    <Button className="add-custom-food" onClick={addToDaily}>Add</Button>
+                </div>
             </Modal.Footer>
         </Modal>
 );
