@@ -9,9 +9,15 @@
 }
 .tab {
     width: 25vw;
-    padding-top: 14px;
-    font-size: 17px;
+    font-size: 13px;
     font-weight: bold;
+}
+.tab i{
+    font-size: 26px;
+    margin-top: 3px;
+}
+.tab .tab-name {
+    margin-top: -5px;
 }
 .tab-active {
     background: rgb(16, 39, 117);

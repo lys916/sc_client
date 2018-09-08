@@ -27,13 +27,25 @@ class Tabs extends React.Component {
 		}
 		return (
 			<div className="tabs">
-				<div className={`border-right tab ${this.state.active === '' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/')}}>Intake</div>
+				<div className={`border-right tab ${this.state.active === '' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/')}}>
+					<i className="material-icons">view_day</i>
+					<div className="tab-name">Daily Intake</div>
+				</div>
 
-				<div className={`border-right tab ${this.state.active === '/calendar' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/calendar')}}>Calendar</div>
+				<div className={`border-right tab ${this.state.active === '/calendar' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/calendar')}}>
+				<i className="material-icons">today</i>
+					<div className="tab-name">Calendar</div>
+				</div>
 
-				<div className={`border-right tab ${this.state.active === '/myfood' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/myfood')}}>Foods</div>
+				<div className={`border-right tab ${this.state.active === '/myfood' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/myfood')}}>
+				<i className="material-icons">fastfood</i>
+					<div className="tab-name">My Foods</div>
+				</div>
 
-				<div className={`border-right tab ${this.state.active === '/profile' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/profile')}}>Profile</div>
+				<div className={`border-right tab ${this.state.active === '/profile' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/profile')}}>
+				<i className="material-icons">person</i>
+					<div className="tab-name">Profile</div>
+				</div>
 			</div>
 		)
 	}
