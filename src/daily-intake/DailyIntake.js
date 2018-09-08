@@ -12,13 +12,19 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import GoalModal from './GoalModal';
 
-function getDateString(){
+function getDateString(diffDay){
 	const date = new Date();
-	const day = date.getDate();
+	const day = date.getDate() + diffDay;
 	const month = date.getMonth();
 	const year = date.getFullYear();
 	const currentDate = day.toString() + (month + 1).toString() + year.toString();
 	return currentDate;
+}
+
+Date.prototype.addDays = function(days) {
+	var date = new Date(this.valueOf());
+	date.setDate(date.getDate() + days);
+	return date;
 }
 
 class DailyIntake extends React.Component {
@@ -28,7 +34,8 @@ class DailyIntake extends React.Component {
 		errorMessage: null,
 		showIntakePage: false,
 		currentDate: '',
-		showGoalModal: false
+		showGoalModal: false,
+		day: 0
 	}
 
 	// static getDerivedStateFromProps(props, state){
@@ -41,7 +48,7 @@ class DailyIntake extends React.Component {
 	// }
 
 	componentDidMount(){
-		this.props.getDailyFood(getDateString());
+		this.props.getDailyFood(getDateString(0));
 
 		setTimeout(()=>{
 			this.setState({showIntakePage: true});
@@ -137,6 +144,13 @@ class DailyIntake extends React.Component {
 		this.setState({showGoalModal: false});
 	}
 
+	handleSetDay = (day)=>{
+		const setDay = this.state.day + day;
+		this.setState({day: setDay}, ()=>{
+			this.props.getDailyFood(getDateString(this.state.day));
+		});
+	}
+
 
 	render(){
 		let fat = 0;
@@ -149,10 +163,11 @@ class DailyIntake extends React.Component {
 		})
 
 		// date formatter
-		const dateToFormat = new Date();
+		const date = new Date();
+		const dateToFormat = date.addDays(this.state.day);
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-				<DailyDate dateToFormat={dateToFormat}/>
+				<DailyDate handleSetDay={this.handleSetDay} dateToFormat={dateToFormat}/>
 
                 <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
 
