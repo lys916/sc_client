@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signUp} from '../actions/userAction';
 import { Link } from 'react-router-dom';
+
 import './styleLoginSignup.css';
 
 class SignUp extends React.Component {
@@ -22,6 +23,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="ls">
+
         <div className="title">Sign-up</div>
         <input type="text" name="name" value={this.state.name} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
@@ -40,7 +42,8 @@ class SignUp extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    others: state.others
   } 
 }
 

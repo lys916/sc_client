@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { connect } from 'react-redux';
 import RequireAuth from './HOC/requireAuth';
+import Loader from './loader/Loader';
 
 class App extends Component {
   state = {
@@ -32,6 +33,11 @@ class App extends Component {
 
         <Router>
           <div>
+            {this.props.others.isLoading ? 
+              <Loader message={this.props.others.loadingMessage}/> 
+              : null 
+            }
+
             <Route path='/myfood' component={RequireAuth(MyFood)} />
             <Route path='/' exact component={RequireAuth(DailyIntake)} />
             <Route path='/test' component={RequireAuth(TestList)} />
@@ -50,7 +56,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-        
+    others: state.others
 	} 
 }
 

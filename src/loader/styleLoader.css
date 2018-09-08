@@ -1,0 +1,12 @@
+.loader {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background:rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+.loader h4 {
+    padding-top: 60px;
+}

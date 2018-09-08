@@ -34,6 +34,9 @@ export const signOut = (history) => {
 export const signUp = (newUser, history) => {
   if(newUser.name !== '' || newUser.email !== '' || newUser.password !== ''){
     return (dispatch) => {
+      dispatch({
+        type: 'SIGNING_UP'
+      });
       axios.post(`${serverROOT}/user/signup`, newUser)
       .then(res => {
         if(res.status === 200){
@@ -53,6 +56,9 @@ export const signUp = (newUser, history) => {
 export const signIn = (user, history) => {
   if(user.name !== '' || user.password !== ''){
     return (dispatch) => {
+      dispatch({
+        type: 'LOGGING_IN'
+      });
       axios.post(`${serverROOT}/user/login`, user)
       .then(res => {
         if(res.status === 200){
