@@ -34,7 +34,7 @@ export const signOut = (history) => {
 export const signUp = (newUser, history) => {
   if(newUser.name !== '' || newUser.email !== '' || newUser.password !== ''){
     return (dispatch) => {
-      axios.post(`${serverROOT}0/user/signup`, newUser)
+      axios.post(`${serverROOT}/user/signup`, newUser)
       .then(res => {
         if(res.status === 200){
           console.log('signed uP!', res.data);

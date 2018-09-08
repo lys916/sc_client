@@ -9,9 +9,12 @@ class Tabs extends React.Component {
 		active: ''
 	}
 	componentDidMount(){
-		this.props.getCustomFoods(this.props.user._id);
-		this.props.getSystemFoods();
-		this.setState({active: this.props.location.pathname});
+		if(this.props.user._id){
+			this.props.getCustomFoods(this.props.user._id);
+			this.props.getSystemFoods();
+			this.setState({active: this.props.location.pathname});
+		}
+
 	}
 	setActive = (tab)=>{
 		
