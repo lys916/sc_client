@@ -12,7 +12,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import GoalModal from './GoalModal';
 
-function getDateString(diffDay){
+function getDateString(diffDay=0){
 	const date = new Date();
 	const day = date.getDate() + diffDay;
 	const month = date.getMonth();
@@ -146,6 +146,7 @@ class DailyIntake extends React.Component {
 
 	handleSetDay = (day)=>{
 		const setDay = this.state.day + day;
+		const userId = this.props.user._id;
 		this.setState({day: setDay}, ()=>{
 			this.props.getDailyFood(getDateString(this.state.day));
 		});
