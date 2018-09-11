@@ -11,9 +11,8 @@ return (
             </Modal.Header> */}
             <Modal.Body className="food-modal-body">
                 {customFoods.map((food, index)=>{
-                    console.log(food.active);
                     return(
-                        <div className="custom-food">
+                        <div key={food._id} className="custom-food">
                         <div className="food-header">
                         {   food.editing ?
                             <div className="food-name">

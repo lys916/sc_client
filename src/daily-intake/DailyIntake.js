@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import AmountIntake from './AmountIntake';
 import FoodIntake from './FoodIntake';
 import GoalIntake from './GoalIntake';
-import { Button, Modal } from 'react-bootstrap';
+// import { Button, Modal } from 'react-bootstrap';
 import FoodModal from './FoodModal';
 import DailyDate from './DailyDate';
-import { searchCustomFoods, addToDaily, deleteFood, getDailyFood, getCustomFoods, toggleActive, toggleEditing, resetToggle, amountOnChange} from '../actions/foodAction';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Moment from 'react-moment';
+import { searchCustomFoods, getDailyFoods, addToDaily, deleteFood, getCustomFoods, toggleActive, toggleEditing, resetToggle, amountOnChange} from '../actions/foodAction';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import Moment from 'react-moment';
 import 'moment-timezone';
 import GoalModal from './GoalModal';
 
@@ -48,7 +48,8 @@ class DailyIntake extends React.Component {
 	// }
 
 	componentDidMount(){
-		this.props.getDailyFood(getDateString(0));
+		console.log('daily intake component mounted');
+		// this.props.getDailyFood(getDateString(0));
 
 		setTimeout(()=>{
 			this.setState({showIntakePage: true});
@@ -66,7 +67,6 @@ class DailyIntake extends React.Component {
 	}
 
 	handleDeleteFood = (id)=>{
-		console.log('handle delete', id);
 		this.props.deleteFood(id);
 		this.setState({showMenu: null});
 	}
@@ -83,7 +83,6 @@ class DailyIntake extends React.Component {
 		const foods = this.props.customFoods;
 		// checking to see if there is any food selected
 		for(let i = 0; i<foods.length; i++){
-			console.log('looking for active');
 			if(foods[i].active){
 				selected = true;
 				break;
@@ -101,11 +100,11 @@ class DailyIntake extends React.Component {
 						fat: food.fat,
 						carb: food.carb,
 						protein: food.protein,
-						dateString: getDateString()
+						dateString: getDateString(this.state.day),
+						userName: this.props.user.username
 					});
 				}
 			});
-			console.log('selected', selectedFoods);
 			this.props.addToDaily(selectedFoods);
 			this.setState({showModal: false, errorMessage: null});
 		}else{
@@ -132,7 +131,6 @@ class DailyIntake extends React.Component {
 	}
 
 	handleSearch = (event)=>{
-		console.log('handle search custom food', event.target.value);
 		this.props.searchCustomFoods(event.target.value);
 	}
 
@@ -148,7 +146,8 @@ class DailyIntake extends React.Component {
 		const setDay = this.state.day + day;
 		const userId = this.props.user._id;
 		this.setState({day: setDay}, ()=>{
-			this.props.getDailyFood(getDateString(this.state.day));
+			console.log('date string', getDateString(this.state.day));
+			this.props.getDailyFoods(getDateString(this.state.day));
 		});
 	}
 
@@ -162,7 +161,7 @@ class DailyIntake extends React.Component {
 			carb += Number(food.carb);
 			protein += Number(food.protein);
 		})
-
+		console.log('state date', this.state.day);
 		// date formatter
 		const date = new Date();
 		const dateToFormat = date.addDays(this.state.day);
@@ -218,7 +217,6 @@ class DailyIntake extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('USER', state.user);
 	return {
 		dailyFoodIntake: state.dailyFoodIntake,
 		customFoods: state.customFoods,
@@ -226,4 +224,4 @@ const mapStateToProps = (state) => {
 	} 
 }
 
-export default connect(mapStateToProps, {toggleEditing, deleteFood, addToDaily, getDailyFood, getCustomFoods, toggleActive, resetToggle, searchCustomFoods, amountOnChange })(DailyIntake);
+export default connect(mapStateToProps, {toggleEditing, getDailyFoods, deleteFood, addToDaily, getCustomFoods, toggleActive, resetToggle, searchCustomFoods, amountOnChange })(DailyIntake);

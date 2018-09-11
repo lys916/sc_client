@@ -22,6 +22,12 @@ const otherReducer = (state = initOthers, action) => {
 		case 'LOGGED_IN': 
 			return {...state, isLoading: false, loadingMessage: null}
 
+		// case 'GETTING_DAILY_FOODSSDFSDF':
+		// 	return {...state, isLoading: true}
+		
+		case 'GOT_DAILY_FOODS':
+			return {...state, isLoading: false}
+
 		default:
 		return state;
 	}

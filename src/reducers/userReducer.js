@@ -1,5 +1,5 @@
 
-import { SIGN_UP, LOGGED_IN, LOGGED_OUT, SEARCH } from '../actions/userAction';
+import { LOGGED_IN, LOGGED_OUT } from '../actions/userAction';
 // initial user state
 let userInit = {
 	// logged_in: false,
@@ -9,9 +9,7 @@ let userInit = {
 }
 // if user exists in local storage, assign username to user initial name
 const user = JSON.parse(localStorage.getItem('user'));
-console.log('initial user', user);
 if(user){
-	console.log(true);
 	userInit = user;
 }
 

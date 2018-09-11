@@ -1,8 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  getCustomFoods, getSystemFoods } from '../actions/foodAction';
+import {  getCustomFoods, getSystemFoods, getDailyFoods } from '../actions/foodAction';
 
 import './styleTabs.css';
+function getDateString(diffDay=0){
+	const date = new Date();
+	const day = date.getDate() + diffDay;
+	const month = date.getMonth();
+	const year = date.getFullYear();
+	const currentDate = day.toString() + (month + 1).toString() + year.toString();
+	return currentDate;
+}
 
 class Tabs extends React.Component {
 	state = {
@@ -10,6 +18,7 @@ class Tabs extends React.Component {
 	}
 	componentDidMount(){
 		if(this.props.user._id){
+			this.props.getDailyFoods(getDateString(0), this.props.user.username);
 			this.props.getCustomFoods(this.props.user._id);
 			this.props.getSystemFoods();
 			this.setState({active: this.props.location.pathname});
@@ -17,21 +26,19 @@ class Tabs extends React.Component {
 
 	}
 	setActive = (tab)=>{
-		
 		this.setState({active: tab}, ()=>{
-			console.log('thisprop', this.props);
 			this.props.history.push(`${tab}`);
 		});
 	}
 	
 	render(){
-		console.log('tab user', this.props.user);
+		console.log('Tabs renders');
 		if(!this.props.user._id){
 			return null;
 		}
 		return (
 			<div className="tabs">
-				<div className={`border-right tab ${this.state.active === '' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/')}}>
+				<div className={`border-right tab ${this.state.active === '/' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/')}}>
 					<i className="material-icons">view_day</i>
 					<div className="tab-name">Daily Intake</div>
 				</div>
@@ -62,4 +69,4 @@ const mapStateToProps = (state) => {
 	} 
 }
 
-export default connect(mapStateToProps, { getCustomFoods, getSystemFoods })(Tabs);
+export default connect(mapStateToProps, { getCustomFoods, getSystemFoods, getDailyFoods })(Tabs);

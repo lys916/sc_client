@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signUp} from '../actions/userAction';
 import { Link } from 'react-router-dom';
+import Loader from '../loader/Loader';
+
 
 import './styleLoginSignup.css';
 
@@ -23,7 +25,10 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="ls">
-
+        {this.props.others.isLoading ? 
+              <Loader message={this.props.others.loadingMessage}/> 
+              : null 
+            }
         <div className="title">Sign-up</div>
         <input type="text" name="name" value={this.state.name} 
         placeholder="Username" onChange={this.handleOnChange}/><br />

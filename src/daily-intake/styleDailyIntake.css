@@ -223,7 +223,7 @@
     border-right: 1px solid #adadad;
 }
 
-.fade-enter {
+/* .fade-enter {
     opacity: 0.01;
     transform: translate(-40px, 0);
 }
@@ -232,10 +232,10 @@
     opacity: 1;
     transform: translate(0, 0);
     transition: all 300ms ease-in;
-}
+} */
 
 
-.fade-exit {
+/* .fade-exit {
     opacity: 1;
     transform: translate(0, 0)
 }
@@ -244,7 +244,7 @@
     opacity: 0;
     transform: translate(-400px, 0);
     transition: all .3s ease-in;
-}
+} */
 
 /* FOOD MODAL */
 

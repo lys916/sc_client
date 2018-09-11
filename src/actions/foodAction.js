@@ -17,7 +17,6 @@ const serverROOT = 'https://sc-back.herokuapp.com';
 //     });
 // }
 export const toggleEditing = (id) => {
-    console.log("toggl editing");
     return ({
         type: 'TOGGLE_EDITING',
         payload: id
@@ -25,7 +24,6 @@ export const toggleEditing = (id) => {
 }
 
 export const toggleActive = (id) => {
-	console.log("toggl ACTiVE");
 	return ({
 		 type: 'TOGGLE_ACTIVE',
 		 payload: id
@@ -48,13 +46,11 @@ export const resetToggle = () => {
 }
 
 export const addToDaily = (foods) => {
-    console.log("adding to daily", foods);
 	 return (dispatch) => {
 		dispatch({
 			type: 'ADDING_TO_DAILY'
 		});
 		axios.post(`${serverROOT}/dailyFood/createFood`, foods).then(res => {
-			console.log('daily food added!', res.data);
 			dispatch({
 				type: 'ADDED_TO_DAILY',
 				payload: res.data
@@ -64,13 +60,11 @@ export const addToDaily = (foods) => {
 }
 
 export const createCustomFood = (food) => {
-	console.log("create custom food", food);
 	return (dispatch) => {
 	  dispatch({
 		  type: 'CREATING_CUSTOM_FOOD'
 	  });
 	  axios.post(`${serverROOT}/customFood/createFood`, food).then(res => {
-		  console.log('custom food created!', res.data);
 		  dispatch({
 			  type: 'CREATED_CUSTOM_FOOD',
 			  payload: res.data
@@ -80,17 +74,17 @@ export const createCustomFood = (food) => {
 }
 
 export const searchCustomFoods = (term) => {
-	console.log('term', term);
 	return ({
 		 type: 'SEARCH_CUSTOM_FOODS',
 		 payload: term
 	});
 }
 
-export const getDailyFood = (date) => {
+export const getDailyFoods = (date, userName) => {
   	return (dispatch) => {
-		axios.get(`${serverROOT}/dailyFood/getFoods`, {params: {date}}).then(res => {
-			console.log('fetched daily foods', res.data);
+		  dispatch({type: 'GETTING_DAILY_FOODS'});
+		axios.get(`${serverROOT}/dailyFood/getFoods`, {params: {date, userName}}).then(res => {
+			console.log('got daily food', res.data);
 			dispatch({
 				type: 'GOT_DAILY_FOODS',
 				payload: res.data
@@ -100,10 +94,8 @@ export const getDailyFood = (date) => {
 }
 
 export const getCustomFoods = (userId) => {
-	console.log('XXXXXXX', userId);
 	return (dispatch) => {
 	 axios.get(`${serverROOT}/customFood/getFoods`, {params: {userId}}).then(res => {
-		 console.log('fetched custom foods', res.data);
 		 dispatch({
 			 type: 'GOT_CUSTOM_FOODS',
 			 payload: res.data
@@ -115,7 +107,6 @@ export const getCustomFoods = (userId) => {
 export const getSystemFoods = () => {
 	return (dispatch) => {
 	 axios.get(`${serverROOT}/systemFood/getFoods`).then(res => {
-		 console.log('fetched system foods', res.data);
 		 dispatch({
 			 type: 'GOT_SYSTEM_FOODS',
 			 payload: res.data
@@ -127,7 +118,6 @@ export const getSystemFoods = () => {
 export const deleteFood = (id) => {
 	return (dispatch) => {
 	 axios.delete(`${serverROOT}/dailyFood/deleteFood`, {params: {id}}).then(res => {
-		 console.log('dail food deleted', res.data);
 		 dispatch({
 			 type: 'DELETED_DAILY_FOOD',
 			 payload: res.data
@@ -139,7 +129,6 @@ export const deleteFood = (id) => {
 export const deleteCustomFood = (id) => {
 	return (dispatch) => {
 	 axios.delete(`${serverROOT}/customFood/deleteFood`, {params: {id}}).then(res => {
-		 console.log('dail food deleted', res.data);
 		 dispatch({
 			 type: 'DELETED_CUSTOM_FOOD',
 			 payload: res.data

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../actions/userAction';
 import { Link } from 'react-router-dom';
+import Loader from '../loader/Loader';
+
 
 
 class Login extends React.Component {
@@ -23,6 +25,10 @@ class Login extends React.Component {
   render() {
     return (
       <div className="ls">
+      {this.props.others.isLoading ? 
+              <Loader message={this.props.others.loadingMessage}/> 
+              : null 
+            }
         <div className="title">Log-in</div>
         <input name="name" value={this.state.email} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
@@ -40,7 +46,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    others: state.others
   } 
 }
 

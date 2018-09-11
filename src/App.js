@@ -7,7 +7,7 @@ import Login from './login-signup/Login';
 import Signup from './login-signup/Signup';
 import DailyIntake from './daily-intake/DailyIntake';
 import TestList from './test-components/TestList';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import './App.css';
 import { connect } from 'react-redux';
 import RequireAuth from './HOC/requireAuth';
@@ -20,23 +20,17 @@ class App extends Component {
     errorMessage: null
   }
 
-  componentDidMount(){
-    console.log('app did mount');
-  }
-
-  
-
   render() {
-    
+    console.log('App.js renders');
     return (
       <div className="App">
 
         <Router>
           <div>
-            {this.props.others.isLoading ? 
+            {/* {this.props.others.isLoading ? 
               <Loader message={this.props.others.loadingMessage}/> 
               : null 
-            }
+            } */}
 
             <Route path='/myfood' component={RequireAuth(MyFood)} />
             <Route path='/' exact component={RequireAuth(DailyIntake)} />
@@ -53,11 +47,11 @@ class App extends Component {
     );
   }
 }
+export default App;
+// const mapStateToProps = (state) => {
+// 	return {
+//     others: state.others
+// 	} 
+// }
 
-const mapStateToProps = (state) => {
-	return {
-    others: state.others
-	} 
-}
-
-export default connect(mapStateToProps, { })(App);
+// export default connect(mapStateToProps, { })(App);

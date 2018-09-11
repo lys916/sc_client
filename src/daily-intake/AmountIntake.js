@@ -1,8 +1,7 @@
 import React from 'react';
-import s from './styleDailyIntake.css';
+import './styleDailyIntake.css';
 
 const AmountIntake = ({fat, carb, protein, user})=>{
-    console.log('GOAL USER', user);
     return (
         <div className="amount-intake">
             { user.goalSet ? 

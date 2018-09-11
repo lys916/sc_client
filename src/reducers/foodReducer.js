@@ -1,5 +1,5 @@
-import uuidv1 from 'uuid/v1';
-import { toggleEditing } from '../actions/foodAction';
+
+
 // import { } from '../actions/foodAction';
 
 let cacheCustomFoods = [];
@@ -53,8 +53,7 @@ const customFoodReducer = (state = [], action) => {
 		case 'CREATED_CUSTOM_FOOD':
 			return [...state, action.payload]
 
-		case 'SEARCH_CUSTOM_FOODS':
-		console.log('cache food', cacheCustomFoods.length);
+		// case 'SEARCH_CUSTOM_FOODS':
 			// const searchResults = cacheCustomFoods.filter(food=>{
 			// if(food.name.toLowerCase().includes(action.payload.toLowerCase())){
 			// 	return food;
@@ -64,8 +63,7 @@ const customFoodReducer = (state = [], action) => {
 		// return searchResults;
 
 		case 'GOT_CUSTOM_FOODS':
-		console.log('got custom food????', action.payload);
-			action.payload.map(food=>{
+			action.payload.forEach(food=>{
 				cacheCustomFoods.push({...food})
 			});
 			return action.payload;

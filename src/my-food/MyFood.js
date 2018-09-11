@@ -9,9 +9,9 @@ class MyFood extends React.Component {
 		name: '',
 		measurement: 'cup',
 		amount: 1,
-		fat: 0,
-		carb: 0,
-		protein: 0,
+		fat: '',
+		carb: '',
+		protein: '',
 		showDropDown: false,
 		showPage: false,
 		systemFoods: this.props.systemFoods,
@@ -27,17 +27,16 @@ class MyFood extends React.Component {
 		},0);
 	}
 	handleOnChange = (event, type)=>{
-		console.log('value', event.target.value);
 		this.setState({[event.target.name]: event.target.value});
 
 		if(event.target.value.length > 0 && type === 'search'){
 			this.setState({selectedFood: null});
-			console.log('search ssytefood', this.props.systemFoods);
 			const searchFoods = this.props.systemFoods.filter(food=>{
-				console.log('true?', food.name.toLowerCase().includes(event.target.value.toLowerCase()));
+		
 				if(food.name.toLowerCase().includes(event.target.value.toLowerCase())){
 					return food;
 				}
+				return null;
 			});
 
 			const fromScratch = [{
@@ -77,7 +76,6 @@ class MyFood extends React.Component {
 	}
 	
 	handleSelectFood = (food)=>{
-		console.log('on select', food);
 		if(food.measurements){
 			const {fat, carb, protein } = food[food.measurements[0]];
 			this.setState({
@@ -108,7 +106,6 @@ class MyFood extends React.Component {
 	}
 
 	handleCreateFood = ()=>{
-		console.log('creating food');
 		const {name, measurement, fat, carb, protein} = this.state;
 		const user = this.props.user._id;
 		this.props.createCustomFood({name, measurement, fat, carb, protein, user})
@@ -320,7 +317,6 @@ class MyFood extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('XXXXXX MY food custom food', state.customFoods);
 	return {
 		customFoods: state.customFoods,
 		systemFoods: state.systemFoods,

@@ -48,11 +48,9 @@ class GoalModal extends React.Component {
 		this.setState({showModal: false});
 	}
 	handleCalculate = ()=>{
-		console.log(this.state);
 		const {age, weight, feet, inch, goal, activity, gender, training} = this.state;
 		const inches = (Number(feet) * 12) + Number(inch);
 		const switchCase = gender + ' ' + goal + ' ' + activity;
-		console.log(switchCase);
 
 		const weightCal = (Number(weight) / 2.20462) * 10;
 		const heightCal = (inches * 2.54) * 6.25;
@@ -176,7 +174,6 @@ class GoalModal extends React.Component {
 
 	}
 	handleOnChange = (e)=>{
-		console.log('onchange', e.target.value);
 		this.setState({[e.target.name]: e.target.value});
 	}
 	handleSaveGoal = ()=>{
@@ -198,7 +195,6 @@ class GoalModal extends React.Component {
 		this.props.handleHideGoalModal();
 	}
 	render(){
-		console.log('USER goal', this.props.user );
 		return (
 			<Modal className="food-modal" show={this.props.showGoalModal} onHide={this.props.handleHideGoalModal}>
 				 <Modal.Body className="goal-modal">

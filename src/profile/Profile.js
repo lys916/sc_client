@@ -14,6 +14,7 @@ class Profile extends React.Component {
 		},0);
 	}
 	render(){
+		console.log('Profile renders');
 		return (
 			<div className={`profile ${this.state.showPage ? 'show-profile-page' : null}`}>
                 PROFILE
