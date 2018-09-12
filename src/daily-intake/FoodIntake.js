@@ -1,11 +1,13 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-const FoodIntake = (props)=>{
+const FoodIntake = ({handleDeleteFood, handleShowMenu, showMenu, foods, isLoading})=>{
+    console.log('is laoding', isLoading);
     return (
         <div className="intake-list">
+            {!isLoading ? 
             <TransitionGroup>
-            { props.foods.map((food, index)=>{
+            { foods.map((food, index)=>{
                 return (
                     <CSSTransition key={food._id} timeout={300} classNames="fade">
                     <div className="food-intake">
@@ -19,7 +21,7 @@ const FoodIntake = (props)=>{
                         </div>
 
                         <div className="food-nutrition">
-                            <div className={`food-fcp ${props.showMenu === index ? 'move-food-fcp' : null}`}>
+                            <div className={`food-fcp ${showMenu === index ? 'move-food-fcp' : null}`}>
                                 <div className="nutrition-name">
                                     <div className="food-cell">Fat</div>
                                     <div className="food-cell">Carb</div>
@@ -31,15 +33,15 @@ const FoodIntake = (props)=>{
                                     <div className="food-cell">{food.protein}</div>
                                 </div>
                             </div>
-                            <div className={`edit-delete ${props.showMenu === index ? 'reset-z' : null}`}>
+                            <div className={`edit-delete ${showMenu === index ? 'reset-z' : null}`}>
                                 <div className={`edit`}>
                                     <i className="material-icons">edit</i>
                                 </div>
-                                <div className={`delete`} onClick={()=>{props.handleDeleteFood(food._id)}}>
+                                <div className={`delete`} onClick={()=>{handleDeleteFood(food._id)}}>
                                     <i className="material-icons">delete</i>
                                 </div>
                             </div>
-                            <div className="more-vert" onClick={()=>{props.handleShowMenu(index)}}>
+                            <div className="more-vert" onClick={()=>{handleShowMenu(index)}}>
                                     <i className="material-icons">more_horiz</i>
                             </div>
                         </div>
@@ -49,6 +51,9 @@ const FoodIntake = (props)=>{
                 )
             })}
             </TransitionGroup>
+            :
+                <div>Loading...</div>
+            }
         </div>
     )
 }

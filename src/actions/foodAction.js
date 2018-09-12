@@ -81,6 +81,8 @@ export const searchCustomFoods = (term) => {
 }
 
 export const getDailyFoods = (date, userName) => {
+	console.log('action get daily food, date', date);
+	console.log('action get daily food, name', userName);
   	return (dispatch) => {
 		  dispatch({type: 'GETTING_DAILY_FOODS'});
 		axios.get(`${serverROOT}/dailyFood/getFoods`, {params: {date, userName}}).then(res => {

@@ -144,10 +144,10 @@ class DailyIntake extends React.Component {
 
 	handleSetDay = (day)=>{
 		const setDay = this.state.day + day;
-		const userId = this.props.user._id;
+		const userName = this.props.user.username;
 		this.setState({day: setDay}, ()=>{
 			console.log('date string', getDateString(this.state.day));
-			this.props.getDailyFoods(getDateString(this.state.day));
+			this.props.getDailyFoods(getDateString(this.state.day), userName);
 		});
 	}
 
@@ -181,7 +181,7 @@ class DailyIntake extends React.Component {
 					<div>My Daily Intake</div>
 				</div>
 				<div className="tab-tobegin">
-					{this.props.dailyFoodIntake.length < 1 ? 'Tab add button to begin' : null}
+					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food' : null}
 				</div>
 
 				<GoalModal history={this.props.history} user={this.props.user} handleShowGoalModal={this.showGoalModal} handleHideGoalModal={this.hideGoalModal} showGoalModal={this.state.showGoalModal}/>
@@ -191,6 +191,7 @@ class DailyIntake extends React.Component {
 					handleShowMenu={this.handleShowMenu} 
 					showMenu={this.state.showMenu} 
 					foods={this.props.dailyFoodIntake}
+					isLoading={this.props.isLoading}
 				/>
 				
 				<div className="add-button" onClick={this.handleShowModal}>
@@ -220,7 +221,8 @@ const mapStateToProps = (state) => {
 	return {
 		dailyFoodIntake: state.dailyFoodIntake,
 		customFoods: state.customFoods,
-		user: state.user
+		user: state.user,
+		isLoading: state.others.isLoading
 	} 
 }
 
