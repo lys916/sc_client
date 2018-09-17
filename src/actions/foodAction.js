@@ -46,6 +46,7 @@ export const resetToggle = () => {
 }
 
 export const addToDaily = (foods) => {
+	console.log('action adding daily food', foods);
 	 return (dispatch) => {
 		dispatch({
 			type: 'ADDING_TO_DAILY'
@@ -60,6 +61,7 @@ export const addToDaily = (foods) => {
 }
 
 export const createCustomFood = (food) => {
+	console.log('action create custom food', food);
 	return (dispatch) => {
 	  dispatch({
 		  type: 'CREATING_CUSTOM_FOOD'

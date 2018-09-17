@@ -8,6 +8,7 @@ const FoodIntake = ({handleDeleteFood, handleShowMenu, showMenu, foods, isLoadin
             {!isLoading ? 
             <TransitionGroup>
             { foods.map((food, index)=>{
+                console.log(food);
                 return (
                     <CSSTransition key={food._id} timeout={300} classNames="fade">
                     <div className="food-intake">

@@ -100,6 +100,7 @@ class DailyIntake extends React.Component {
 						fat: food.fat,
 						carb: food.carb,
 						protein: food.protein,
+						amount: food.amount,
 						dateString: getDateString(this.state.day),
 						userName: this.props.user.username
 					});

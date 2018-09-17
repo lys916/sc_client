@@ -67,6 +67,17 @@ class MyFood extends React.Component {
 			carb = carb * Number(event.target.value);
 			protein = protein * Number(event.target.value);
 
+			// trim float number
+			if(fat.toString().includes('.')){
+				fat = fat.toFixed(1);
+			}
+			if(carb.toString().includes('.')){
+				carb = carb.toFixed(1);
+			}
+			if(protein.toString().includes('.')){
+				protein = protein.toFixed(1);
+			}
+
 			this.setState({fat, carb, protein});
 		}
 
@@ -106,19 +117,20 @@ class MyFood extends React.Component {
 	}
 
 	handleCreateFood = ()=>{
-		const {name, measurement, fat, carb, protein} = this.state;
+		const {name, measurement, fat, carb, protein, amount} = this.state;
 		const user = this.props.user._id;
-		this.props.createCustomFood({name, measurement, fat, carb, protein, user})
-		this.setState({showDropDown: false, scratch: false, name: ''});
+		this.props.createCustomFood({name, measurement, fat, carb, protein, user, amount})
+		this.setState({showDropDown: false, scratch: false, name: '', selectedFood: null});
 	}
 
 	handleCancelCreateFood = ()=>{
-		this.setState({scratch: false, name: '', showDropDown: false});
+		this.setState({scratch: false, name: '', showDropDown: false, selectedFood: null});
 	}
 
 	render(){
 		return (
 			<div className={`my-food ${this.state.showPage ? 'show-my-food-page' : null}`}>
+
 			{/* SEARCH FOOD COMPONENT */}
 			{ !this.state.scratch ? 
 				<div className="search-food">
@@ -193,8 +205,13 @@ class MyFood extends React.Component {
 					}
 
 					{ this.state.selectedFood ? 
+						<div>
 						<div className="create-button" onClick={this.handleCreateFood}>
 							Create
+						</div>
+						<div className="cancel-button" onClick={this.handleCancelCreateFood}>
+							Cancel
+						</div>
 						</div> : null
 					}
 					<br/>
@@ -204,7 +221,7 @@ class MyFood extends React.Component {
 
 
 			{/* FROM SCRATCH FOOD COMPONENT */}
-			{ this.state.scratch ? 
+			{/* { this.state.scratch ? 
 				<div className="search-food">
 					<div className="food-title">Create New Food</div>
 					<form>
@@ -257,7 +274,7 @@ class MyFood extends React.Component {
 						
 					<br/>
 				</div> : null
-			}
+			} */}
 
 
 
