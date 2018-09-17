@@ -52,7 +52,7 @@ const FoodIntake = ({handleDeleteFood, handleShowMenu, showMenu, foods, isLoadin
             })}
             </TransitionGroup>
             :
-                <div>Loading...</div>
+                <div className="spinner-gif"><img src="./spinner.gif" /></div>
             }
         </div>
     )

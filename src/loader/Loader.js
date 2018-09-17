@@ -3,7 +3,7 @@ import './styleLoader.css';
 const Loader = ({message})=>{
     return (
         <div className="loader">
-            <h4>{message}</h4>
+            <div className="spinner-gif"><img src="./spinner.gif" /></div>
         </div>
     )
 }
