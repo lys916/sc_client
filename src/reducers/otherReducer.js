@@ -5,7 +5,8 @@ import {  } from '../actions/foodAction';
 const initOthers = {
     isLoading: false,
 	loadingMessage: null,
-	loadingCustomFood: false
+	loadingCustomFood: false,
+	userErrorMessage: null
 }
 
 const otherReducer = (state = initOthers, action) => {
@@ -35,6 +36,9 @@ const otherReducer = (state = initOthers, action) => {
 
 		case 'GOT_CUSTOM_FOODS': 
 			return {...state, loadingCustomFood: false}
+
+		case 'USER_ERROR_MESSAGE':
+			return {...state, userErrorMessage: action.payload, isLoading: false}
 
 
 		default:

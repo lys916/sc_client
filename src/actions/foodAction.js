@@ -1,5 +1,8 @@
 import axios from 'axios';
-const serverROOT = 'https://sc-back.herokuapp.com';
+// const serverROOT = 'https://sc-back.herokuapp.com';
+const serverROOT = 'http://localhost:5000';
+
+
 // export const NEW_POST = 'NEW_POST';
 // export const FETCHED_POSTS = 'FETCHED_POSTS';
 

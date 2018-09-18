@@ -29,7 +29,8 @@ class SignUp extends React.Component {
               <Loader message={this.props.others.loadingMessage}/> 
               : null 
             }
-        <div className="title">Simple Count</div>
+        <div className="title">Simple Count</div><br/>
+        {this.props.others.userErrorMessage ? <div className="error-message">{this.props.others.userErrorMessage}</div> : null}
         <input type="text" name="name" value={this.state.name} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
 

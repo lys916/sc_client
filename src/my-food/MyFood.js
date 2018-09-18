@@ -40,7 +40,7 @@ class MyFood extends React.Component {
 			});
 
 			const fromScratch = [{
-				name: "No food available. CREATE FROM SCRATCH.",
+				name: "Sorry no food available from your search at the moment. We are constantly working to add more food to our database. TAP THIS MESSAGE TO CREATE YOUR CUSTOM FOOD MANUALLY.",
 				// measurements: ['cup', 'oz', 'gram', 'tsp', 'tbsp'],
 				// cup: {fat: 0, carb: 0, protein: 0},
 				// oz: {fat: 0, carb: 0, protein: 0},
@@ -50,7 +50,7 @@ class MyFood extends React.Component {
 			}]
 
 			if(searchFoods.length > 0){
-				this.setState({systemFoods: searchFoods, showDropDown: true});
+				this.setState({systemFoods: searchFoods.slice(0, 10), showDropDown: true});
 			}else{
 				this.setState({systemFoods: fromScratch, showDropDown: true});
 			}
@@ -97,7 +97,8 @@ class MyFood extends React.Component {
 				fat, carb, protein
 			});
 		}else{
-			this.setState({scratch: true});
+			console.log('YES SCRATCH');
+			this.setState({scratch: true, name: ''});
 		}
 	}
 
@@ -128,13 +129,15 @@ class MyFood extends React.Component {
 	}
 
 	render(){
+		console.log('PROPS SYSTEM FOOD', this.props.systemFoods.length);
+		console.log('PROPS STATE FOOD', this.state.systemFoods.length);
 		return (
 			<div className={`my-food ${this.state.showPage ? 'show-my-food-page' : null}`}>
 
 			{/* SEARCH FOOD COMPONENT */}
 			{ !this.state.scratch ? 
 				<div className="search-food">
-					<div className="food-title">Create New Food</div>
+					<div className="food-title">Create new custom food</div>
 					<form>
 						<input className="search-input" type="text" name="name" placeholder="Search Food Database" onChange={(e)=>{this.handleOnChange(e, 'search')}} autoComplete="off" value={this.state.name}/>
 
@@ -157,7 +160,7 @@ class MyFood extends React.Component {
 					{	this.state.showDropDown ? 
 						this.state.systemFoods.map(food=>{
 							return (
-								<div className="food" onClick={()=>{this.handleSelectFood(food)}}>{food.name}</div>
+								<div className="food" key={food._id} onClick={()=>{this.handleSelectFood(food)}}>{food.name}</div>
 							)
 						}) : null
 					}
@@ -221,7 +224,7 @@ class MyFood extends React.Component {
 
 
 			{/* FROM SCRATCH FOOD COMPONENT */}
-			{/* { this.state.scratch ? 
+			{ this.state.scratch ? 
 				<div className="search-food">
 					<div className="food-title">Create New Food</div>
 					<form>
@@ -247,21 +250,21 @@ class MyFood extends React.Component {
 
 						<div className="nutritients">
 							<div className="fat nutrient">
-								<div className="title">Fat</div>
+								<div className="title">Fat (g)</div>
 								<div className="amount">
-									<input name="fat" value={this.state.fat} onChange={this.handleOnChange} placeholder="Fat"/>
+									<input name="fat" value={this.state.fat} onChange={this.handleOnChange} placeholder="Amount"/>
 								</div>
 							</div>
 							<div className="carb nutrient">
-								<div className="title">Carb</div>
+								<div className="title">Carb (g)</div>
 								<div className="amount">
-									<input name="carb" value={this.state.carb} onChange={this.handleOnChange} placeholder="Carb"/>
+									<input name="carb" value={this.state.carb} onChange={this.handleOnChange} placeholder="Amount"/>
 								</div>
 							</div>
 							<div className="protein nutrient">
-								<div className="title">Protein</div>
+								<div className="title">Protein (g)</div>
 								<div className="amount">
-									<input name="protein" value={this.state.protein} onChange={this.handleOnChange} placeholder="Protein"/>
+									<input name="protein" value={this.state.protein} onChange={this.handleOnChange} placeholder="Amount"/>
 								</div>
 							</div>
 						</div>
@@ -274,14 +277,16 @@ class MyFood extends React.Component {
 						
 					<br/>
 				</div> : null
-			} */}
+			}
 
 
 
 
 				{/* MY CUSTOM FOOD COMPONENT */}
+				<br/>
 				<div className="custom-foods">
-					<div className="food-title">My Foods</div>
+					<div className="food-title">My custom foods</div>
+					{this.props.customFoods.length === 0 ? <div>You don't have any custom food at the moment.</div> : null}
 					<TransitionGroup>
             { this.props.customFoods.map((food, index)=>{
                 return (

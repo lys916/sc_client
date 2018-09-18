@@ -20,3 +20,6 @@
 .ls .have-account {
     margin-top: 30px;
 }
+.error-message {
+    color: red;
+}

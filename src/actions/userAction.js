@@ -8,8 +8,8 @@ export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
 export const CHECK_IF_AUTHENTICATED = 'CHECK_IF_AUTHENTICATED';
 export const SEARCH = 'SEARCH';
-const serverROOT = 'https://sc-back.herokuapp.com';
-// const serverROOT = 'http://localhost:5000';
+// const serverROOT = 'https://sc-back.herokuapp.com';
+const serverROOT = 'http://localhost:5000';
 
 export const signOut = (history) => {
   localStorage.removeItem('user');
@@ -19,14 +19,21 @@ export const signOut = (history) => {
 
 export const signUp = (newUser, history) => {
   console.log('USER SIGNING UP', newUser);
-  if(newUser.name !== '' || newUser.email !== '' || newUser.password !== ''){
+  if(newUser.name !== '' || newUser.password !== ''){
     return (dispatch) => {
       dispatch({
         type: 'SIGNING_UP'
       });
       axios.post(`${serverROOT}/user/signup`, newUser)
       .then(res => {
-        if(res.status === 200){
+        console.log('singup rentrun', res);
+        if(res.data.errorMessage){
+          dispatch({
+            type: 'USER_ERROR_MESSAGE',
+            payload: res.data.errorMessage
+          });
+        }else{
+          console.log('TRUE????????');
           localStorage.setItem('user', JSON.stringify(res.data));
           dispatch({
               type: LOGGED_IN,
@@ -36,6 +43,11 @@ export const signUp = (newUser, history) => {
         }
       });
     }
+  }else{
+    return({
+      type: 'USER_ERROR_MESSAGE',
+      payload: 'Please enter username and password.'
+    });
   }
 }
 
@@ -47,16 +59,26 @@ export const signIn = (user, history) => {
       });
       axios.post(`${serverROOT}/user/login`, user)
       .then(res => {
-        if(res.status === 200){
+        if(res.data.errorMessage){
+          dispatch({
+            type: 'USER_ERROR_MESSAGE',
+            payload: res.data.errorMessage
+          });
+        }else{
           localStorage.setItem('user', JSON.stringify(res.data));
           dispatch({
-            type: LOGGED_IN,
-            payload: res.data
+              type: LOGGED_IN,
+              payload: res.data
           });
-          history.push('/');       
+          history.push('/');
         }
       });
     }
+  }else{
+    return({
+      type: 'USER_ERROR_MESSAGE',
+      payload: 'Please enter username and password.'
+    });
   }
 }
 

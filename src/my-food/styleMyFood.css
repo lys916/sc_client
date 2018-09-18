@@ -52,6 +52,7 @@ form .amount input {
     padding: 3px;
     border-top: 1px solid #dedede;
     margin: 0px 5px;
+    font-weight: bold;
 }
 
 .drop-down .food:hover{

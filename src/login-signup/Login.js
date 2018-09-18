@@ -29,7 +29,8 @@ class Login extends React.Component {
               <Loader message={this.props.others.loadingMessage}/> 
               : null 
             }
-        <div className="title">Simple Count</div>
+        <div className="title">Simple Count</div><br/>
+        {this.props.others.userErrorMessage ? <div className="error-message">{this.props.others.userErrorMessage}</div> : null}
         <input name="name" value={this.state.email} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
 
