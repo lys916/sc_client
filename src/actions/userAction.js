@@ -8,8 +8,8 @@ export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
 export const CHECK_IF_AUTHENTICATED = 'CHECK_IF_AUTHENTICATED';
 export const SEARCH = 'SEARCH';
-// const serverROOT = 'https://sc-back.herokuapp.com';
-const serverROOT = 'http://localhost:5000';
+const serverROOT = 'https://sc-back.herokuapp.com';
+// const serverROOT = 'http://localhost:5000';
 
 export const signOut = (history) => {
   localStorage.removeItem('user');
