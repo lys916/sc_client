@@ -29,7 +29,7 @@ class SignUp extends React.Component {
               <Loader message={this.props.others.loadingMessage}/> 
               : null 
             }
-        <div className="title">Sign-up</div>
+        <div className="title">Simple Count</div>
         <input type="text" name="name" value={this.state.name} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
 
