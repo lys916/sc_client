@@ -36,10 +36,10 @@ class SignUp extends React.Component {
         <input type="password" name="password" value={this.state.password} 
         placeholder="Password" onChange={this.handleOnChange}/><br />
 
-        <button onClick={() => {this.handleSignUp()}}>Submit</button><br />
-        <div className="have-account">Already have an account?</div>
-        <Link to="/"><button className="signin">Log in</button><br /></Link>
-
+        <button onClick={() => {this.handleSignUp()}}>Sign up</button><br />
+        <div className="have-account">Already have an account? <Link to="/">Log in</Link></div>
+        
+        <br />
       </div>
     );
   }

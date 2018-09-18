@@ -36,9 +36,9 @@ class Login extends React.Component {
         <input name="password" type="password" value={this.state.value} 
         placeholder="Password" onChange={this.handleOnChange}/><br />
 
-        <button className="signin" onClick={() => {this.handleSignIn()}}>Submit</button><br />
-        <div className="have-account">Don't have an account?</div>
-        <Link to="/signup"><button>Sign up</button></Link><br />
+        <button className="signin" onClick={() => {this.handleSignIn()}}>Log in</button><br />
+        <div className="have-account">Don't have an account? <Link to="/signup">Sign up</Link></div>
+        <br />
       </div>
     );
   }
