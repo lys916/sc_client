@@ -53,19 +53,28 @@ const customFoodReducer = (state = [], action) => {
 		case 'CREATED_CUSTOM_FOOD':
 			return [...state, action.payload]
 
-		// case 'SEARCH_CUSTOM_FOODS':
-			// const searchResults = cacheCustomFoods.filter(food=>{
-			// if(food.name.toLowerCase().includes(action.payload.toLowerCase())){
-			// 	return food;
-			// }
-		// });
-
-		// return searchResults;
+		case 'SEARCH_CUSTOM_FOODS':
+			console.log('SEARCH TERM', action.payload);
+			if(action.payload === ''){
+				console.log('BLANK');
+				return cacheCustomFoods;
+			}
+			const searchResults = cacheCustomFoods.filter(food=>{
+			if(food.name.toLowerCase().includes(action.payload.toLowerCase())){
+				console.log('SEARCH FOUND!!');
+				return food;
+			}
+		});
+		console.log('CACHE CUSTOM', cacheCustomFoods);
+		console.log('SEARCH CUSTOM', searchResults);
+		return searchResults;
 
 		case 'GOT_CUSTOM_FOODS':
-			action.payload.forEach(food=>{
-				cacheCustomFoods.push({...food})
+			const preCache = action.payload.map(food=>{
+				return {...food};
 			});
+			cacheCustomFoods = preCache;
+			console.log('INITIAL CACHE', cacheCustomFoods);
 			return action.payload;
 		
 		case 'DELETED_CUSTOM_FOOD':

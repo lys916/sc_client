@@ -132,7 +132,7 @@
 }
 
 /* FOOD INTAKE */
-.food-intake {
+.custom-food {
     border-bottom: 1px solid #efefef;
     margin-bottom: 10px;
     text-align: left;
@@ -146,6 +146,19 @@
 }
 .food-name {
     display: inline-block;
+    width: 75%;
+}
+.food-name .edit-amount {
+    width: 30px;
+    color: black;
+    font-weight: bold;
+    padding-left: 3px;
+}
+.food-name .edit-name {
+    color: black;
+    font-weight: bold;
+    padding-left: 3px;
+    width: 100%;
 }
 .food-cal {
     float: right;
@@ -209,7 +222,7 @@
 }
 .nutrition-name {
     display: flex;
-    border-bottom: 1px solid #adadad;
+    /* border-bottom: 1px solid #adadad; */
     font-size: 14px;
     width: 100%;
 }
@@ -220,7 +233,12 @@
 .food-cell {
     width: 100%;
     text-align: center;
-    border-right: 1px solid #adadad;
+    border: 1px solid #cecece;
+    padding: 1px;
+    /* border: 1px solid blue; */
+}
+.nutrition-amount input {
+    font-weight: bold;
 }
 
 .fade-appear {
@@ -315,15 +333,34 @@
 }
 
 .custom-edit {
-    padding: 9px 9px 0px 9px;
-    background: #adadad;
+    padding: 5px 10px;
+    background: #cacaca;
     border-right: 1px solid gray;
+    text-align: center;
+}
+
+.custom-edit .edit-icon-title {
+    font-size: 13px;
+    margin-top: -9px;
+    font-weight: bold;
 }
 
 .custom-add {
-    padding: 9px 9px 0px 9px;
-    background: #adadad;
+    padding: 5px 10px;
+    background: #cacaca;
     border-right: 1px solid gray;
+    text-align: center;
+}
+
+.custom-edit i {
+    font-size: 21px;
+    padding-top: 2px;
+}
+
+.custom-add .add-icon-title {
+    font-size: 13px;
+    margin-top: -10px;
+    font-weight: bold;
 }
 
 .add-custom-food {

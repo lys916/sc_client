@@ -286,7 +286,7 @@ class MyFood extends React.Component {
             { this.props.customFoods.map((food, index)=>{
                 return (
                     <CSSTransition key={food._id} timeout={300} classNames="fade">
-                    <div className="food-intake">
+                    <div className="custom-food">
                         <div className="food-header">
                             <div className="food-name">
                                 {food.name} - {food.amount} {food.measurement}

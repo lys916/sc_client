@@ -23,6 +23,13 @@ export const toggleEditing = (id) => {
     });
 }
 
+export const toggleSaving = (id) => {
+    return ({
+        type: 'TOGGLE_SAVING',
+        payload: id
+    });
+}
+
 export const toggleActive = (id) => {
 	return ({
 		 type: 'TOGGLE_ACTIVE',

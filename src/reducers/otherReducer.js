@@ -4,7 +4,8 @@ import {  } from '../actions/foodAction';
 
 const initOthers = {
     isLoading: false,
-    loadingMessage: null
+	loadingMessage: null,
+	loadingCustomFood: false
 }
 
 const otherReducer = (state = initOthers, action) => {
@@ -28,8 +29,13 @@ const otherReducer = (state = initOthers, action) => {
 		case 'GOT_DAILY_FOODS': 
 			return {...state, isLoading: false}
 		
-		case 'GOT_DAILY_FOODS':
-			return {...state, isLoading: false}
+		
+		case 'GETTING_CUSTOM_FOODS':
+			return {...state, loadingCustomFood: true}
+
+		case 'GOT_CUSTOM_FOODS': 
+			return {...state, loadingCustomFood: false}
+
 
 		default:
 		return state;
