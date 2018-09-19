@@ -35,7 +35,9 @@ class DailyIntake extends React.Component {
 		showIntakePage: false,
 		currentDate: '',
 		showGoalModal: false,
-		day: 0
+		day: 0,
+		mouseDown: '',
+		mouseUp: ''
 	}
 
 	// static getDerivedStateFromProps(props, state){
@@ -160,6 +162,15 @@ class DailyIntake extends React.Component {
 		console.log('SORTING BY', event.target.value);
 	}
 
+	handleMouseDown = (spot)=>{
+		console.log('MOUSE IS DOWN!');
+		this.setState({mouseDown: spot});
+	}
+
+	handleMouseUp = ()=>{
+		this.setState({mouseDown: ''});
+	}
+
 	render(){
 		let fat = 0;
 		let carb = 0;
@@ -175,7 +186,7 @@ class DailyIntake extends React.Component {
 		const dateToFormat = date.addDays(this.state.day);
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-				<DailyDate handleSetDay={this.handleSetDay} dateToFormat={dateToFormat}/>
+				<DailyDate mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat}/>
 
                 <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
 
