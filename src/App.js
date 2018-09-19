@@ -8,11 +8,15 @@ import Signup from './login-signup/Signup';
 import Admin from './admin/Admin';
 import DailyIntake from './daily-intake/DailyIntake';
 import TestList from './test-components/TestList';
-import { BrowserRouter as Router, Route, } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+import configureHistory from './configureHistory.js';
 import './App.css';
 import { connect } from 'react-redux';
 import RequireAuth from './HOC/requireAuth';
 import Loader from './loader/Loader';
+
+const history = configureHistory();
 
 class App extends Component {
   state = {
@@ -26,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Router>
+        <Router history={history}>
           <div>
             {/* {this.props.others.isLoading ? 
               <Loader message={this.props.others.loadingMessage}/> 
