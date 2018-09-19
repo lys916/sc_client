@@ -13,7 +13,7 @@
     top: 0px;
     z-index: 1;
 }
-.search-food .food-title {
+.my-food .food-title {
     background: var(--blue_d);
     font-size: 18px;
     color: white;

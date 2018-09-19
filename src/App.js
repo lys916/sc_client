@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MyFood from './my-food/MyFood';
+import MyFood1 from './my-food/MyFood1';
 import Tabs from './tabs/Tabs';
 import Profile from './profile/Profile';
 import Calendar from './calendar/Calendar';
@@ -37,7 +37,7 @@ class App extends Component {
               : null 
             } */}
 
-            <Route path='/myfood' component={RequireAuth(MyFood)} />
+            <Route path='/myfood' component={RequireAuth(MyFood1)} />
             <Route path='/' exact component={RequireAuth(DailyIntake)} />
             <Route path='/test' component={RequireAuth(TestList)} />
             <Route path='/profile' component={RequireAuth(Profile)} />

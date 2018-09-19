@@ -1,0 +1,54 @@
+.mf {
+
+}	
+	/* TITLE */
+	.mf .title-box {
+			display: flex;
+			border-bottom: 1px solid #dedede;
+			padding: 3px 13px;
+	}
+		.mf .title {
+				display: flex;
+				width: 100%;
+				font-weight: bold;
+		}
+			.mf .nut {
+					width: 100%;
+			}
+		.mf .nut-space {
+			width: 16%;
+		}
+	
+		/* FOOD */
+	.mf .food-box {
+			display: flex;
+			border-bottom: 1px solid #dedede;
+	}
+		.mf .food {
+				text-align: left;
+				width: 100%;
+		}
+		.mf .food-name {
+			width: 100%;
+			padding: 3px 13px;
+			font-weight: bold;
+		}
+		.mf .amounts {
+			display: flex;
+		}
+			.mf .amount {
+					width: 100%;
+					text-align: center;
+					padding: 3px 13px;
+			}
+			
+	/* MENU */
+	.mf .menu {
+			width: 16%;
+	}
+
+	/* UNIVERSAL */
+	.align-left {
+		text-align: left !important;
+	}
+
