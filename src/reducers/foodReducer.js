@@ -108,52 +108,57 @@ const dailyFoodIntakeReducer = (state = [], action) => {
 };
 
 const systemFoods = [
-	{
-		name: 'Chicken Breast Cooked',
-		measurements: ['cup', 'oz'],
-		cup: {
-			fat: 3,
-			carb: 0,
-			protein: 40
-		},
-		oz: {
-			fat: 1,
-			carb: 0,
-			protein: 10
-		},
-		id: 1,
-	},
-	{
-		name: 'Chicken Breast Raw',
-		measurements: ['cup', 'oz'],
-		cup: {
-			fat: 4,
-			carb: 0,
-			protein: 45
-		},
-		oz: {
-			fat: 1,
-			carb: 0,
-			protein: 10
-		},
-		id: 2,
-	},
-	{
-		name: 'brocolli cooked',
-		measurements: ['cup'],
-		cup: {
-			fat: .3,
-			carb: 10,
-			protein: 1
-		},
-		id: 3,
-	}
+	// {
+	// 	name: 'Chicken Breast Cooked',
+	// 	measurements: ['cup', 'oz'],
+	// 	cup: {
+	// 		fat: 3,
+	// 		carb: 0,
+	// 		protein: 40
+	// 	},
+	// 	oz: {
+	// 		fat: 1,
+	// 		carb: 0,
+	// 		protein: 10
+	// 	},
+	// 	id: 1,
+	// },
+	// {
+	// 	name: 'Chicken Breast Raw',
+	// 	measurements: ['cup', 'oz'],
+	// 	cup: {
+	// 		fat: 4,
+	// 		carb: 0,
+	// 		protein: 45
+	// 	},
+	// 	oz: {
+	// 		fat: 1,
+	// 		carb: 0,
+	// 		protein: 10
+	// 	},
+	// 	id: 2,
+	// },
+	// {
+	// 	name: 'brocolli cooked',
+	// 	measurements: ['cup'],
+	// 	cup: {
+	// 		fat: .3,
+	// 		carb: 10,
+	// 		protein: 1
+	// 	},
+	// 	id: 3,
+	// }
 ];
 
 const systemFoodReducer = (state = systemFoods, action) => {
 	switch (action.type) {
 		case 'GOT_SYSTEM_FOODS':
 			return action.payload;
+
+		case 'ADDED_SYSTEM_FOOD':
+			console.log('added system food', action.payload);
+			return [...state, action.payload]
+
 		default:
 			return state;
 	}

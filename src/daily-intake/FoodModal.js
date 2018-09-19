@@ -33,8 +33,7 @@ return (
                                 :
                                 // OTHERWISE, SHOW FOOD DATA
                                 <div className="food-name">
-                                    <span>{food.name} - {food.amount} {food.measurement}</span>
-                                    
+                                    <span>{food.name} - {food.amount} {food.measurement}</span> 
                                 </div>  
                             }
                             {/* FOOD TOTAL CALORIES */}

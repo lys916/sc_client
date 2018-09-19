@@ -129,19 +129,22 @@ class MyFood extends React.Component {
 	}
 
 	render(){
-		console.log('PROPS SYSTEM FOOD', this.props.systemFoods.length);
+		console.log('SELECTED FOOD', this.state.selectedFood);
 		console.log('PROPS STATE FOOD', this.state.systemFoods.length);
 		return (
 			<div className={`my-food ${this.state.showPage ? 'show-my-food-page' : null}`}>
 
 			{/* SEARCH FOOD COMPONENT */}
-			{ !this.state.scratch ? 
+			{ !this.state.scratch ?
+				// IF CREATE FROM SCRATCH IS FALSE
 				<div className="search-food">
 					<div className="food-title">Create new custom food</div>
 					<form>
+						{/* SHOW THE SEARCH BAR */}
 						<input className="search-input" type="text" name="name" placeholder="Search Food Database" onChange={(e)=>{this.handleOnChange(e, 'search')}} autoComplete="off" value={this.state.name}/>
 
 						{ this.state.selectedFood ? 
+							// IF FOOD IS SELECTED, SHOW THE AMOUNT AND MEASUREMENT ELEMENTS
 							<div className="amount">
 								<input name="amount" value={this.state.amount} onChange={(e)=>{this.handleOnChange(e, 'amount')}} placeholder="Amount"/>
 
@@ -158,6 +161,7 @@ class MyFood extends React.Component {
 					</form>
 					<div className="drop-down">
 					{	this.state.showDropDown ? 
+						// IF DROPDOWN IS TRUE, SHOW DROPDOWN LIST
 						this.state.systemFoods.map(food=>{
 							return (
 								<div className="food" key={food._id} onClick={()=>{this.handleSelectFood(food)}}>{food.name}</div>
@@ -165,8 +169,9 @@ class MyFood extends React.Component {
 						}) : null
 					}
 					</div>
-
-					{ this.state.selectedFood && !this.state.scratch ? 
+					
+					{ this.state.selectedFood && !this.state.scratch ?
+						// IF FOOD IS SELECTED AND NOT CREATING FROM SCRATCH, RENDER FOOD NUTRITION DATA
 						<div className="nutritients">
 							<div className="fat nutrient">
 								<div className="title">Fat</div>
@@ -183,6 +188,7 @@ class MyFood extends React.Component {
 						</div> : null
 					}
 					{ this.state.selectedFood && this.state.scratch ? 
+						// IF FOOD IS SELECTED AND CREATING FROM SCRATCH IS TRUE, SHOW NUTRITION DATA IN INPUT SO USER CAN ENTER AMOUNT
 						<div className="nutritients">
 							<div className="fat nutrient">
 								<div className="title">Fat</div>
@@ -207,7 +213,8 @@ class MyFood extends React.Component {
 						</div> : null
 					}
 
-					{ this.state.selectedFood ? 
+					{ this.state.selectedFood ?
+						// IF FOOD IS SELECTED, SHOW CREATE AND CANCEL BUTTON
 						<div>
 						<div className="create-button" onClick={this.handleCreateFood}>
 							Create

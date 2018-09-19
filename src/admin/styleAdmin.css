@@ -1,0 +1,24 @@
+.admin {
+    padding: 10px;
+}
+.admin-custom-food {
+    text-align: left;
+    margin-top: 5px;
+}
+.admin-nutrition {
+    border: 1px solid #dedede;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.admin-nutrition .unit{
+    background: #dedede;
+    padding: 3px;
+    font-size: 18px;
+}
+.admin-nutrition .nuts{
+    padding: 4px 2px;
+}
+.admin-nutrition input {
+    width: 35px;
+    margin-right: 5px;
+}

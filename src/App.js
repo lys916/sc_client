@@ -5,6 +5,7 @@ import Profile from './profile/Profile';
 import Calendar from './calendar/Calendar';
 import Login from './login-signup/Login';
 import Signup from './login-signup/Signup';
+import Admin from './admin/Admin';
 import DailyIntake from './daily-intake/DailyIntake';
 import TestList from './test-components/TestList';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path="/" component={Tabs} />
             <Route path='/login' exact component={Login} />
             <Route path='/signup' exact component={Signup} />
+            <Route path='/admin' exact component={Admin} />
           </div>
         </Router>
 

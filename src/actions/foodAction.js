@@ -129,6 +129,17 @@ export const getSystemFoods = () => {
  }
 }
 
+export const addSystemFood = (food) => {
+	return (dispatch) => {
+	 axios.post(`${serverROOT}/systemFood/addFood`, food).then(res => {
+		 dispatch({
+			 type: 'ADDED_SYSTEM_FOOD',
+			 payload: res.data
+		 });
+	 });
+ }
+}
+
 export const deleteFood = (id) => {
 	return (dispatch) => {
 	 axios.delete(`${serverROOT}/dailyFood/deleteFood`, {params: {id}}).then(res => {
