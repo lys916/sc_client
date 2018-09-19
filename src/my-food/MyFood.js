@@ -98,7 +98,7 @@ class MyFood extends React.Component {
 			});
 		}else{
 			console.log('YES SCRATCH');
-			this.setState({scratch: true, name: ''});
+			this.setState({scratch: true});
 		}
 	}
 
