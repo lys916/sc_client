@@ -1,54 +1,138 @@
 .mf {
-
-}	
+	padding-bottom: 15px;
+	border-bottom: 1px solid #cccccc;
+	box-shadow: 3px 1px 3px #cccccc;
+	margin-bottom:70px;
+}
+.mf .sticky {
+	position: sticky;
+	top: 0px;
+	background: white;
+}
+.mf .search{
+	padding: 10px;
+	border-bottom: 1px solid #dedede;
+}
+.mf .search input {
+	width: 100%;
+	padding: 8px 0px 5px 33px;
+	border: 1px solid #bebebe;
+	border-radius: 3px;
+}
+.mf .search i {
+	position: absolute;
+	top: 17px;
+	left: 17px;
+}
 	/* TITLE */
-	.mf .title-box {
-			display: flex;
-			border-bottom: 1px solid #dedede;
-			padding: 3px 13px;
-	}
 		.mf .title {
 				display: flex;
 				width: 100%;
 				font-weight: bold;
+				border-bottom: 1px solid #dedede;
+				padding: 2px 0px;
 		}
 			.mf .nut {
 					width: 100%;
 			}
-		.mf .nut-space {
-			width: 16%;
-		}
+
 	
 		/* FOOD */
-	.mf .food-box {
-			display: flex;
-			border-bottom: 1px solid #dedede;
-	}
 		.mf .food {
 				text-align: left;
 				width: 100%;
+				border-bottom: 1px solid #dedede;
+				position: relative;
+				transform: translateX(0px);
+				transition: all .3s;
 		}
-		.mf .food-name {
-			width: 100%;
-			padding: 3px 13px;
-			font-weight: bold;
-		}
-		.mf .amounts {
-			display: flex;
-		}
-			.mf .amount {
-					width: 100%;
-					text-align: center;
-					padding: 3px 13px;
+			.mf .food-name {
+				width: 100%;
+				font-weight: bold;
+				padding: 10px 10px 2px 7px;
+				background: white;
+
 			}
+			.mf .move-food {
+				transform: translateX(-120px);
+    transition: all .3s;
+			}
+				.mf .food .add i {
+					color: green;
+					font-size: 35px;
+				}
+				.mf .food .arrow i {
+					font-size: 22px;
+					margin-top: 7px;
+				}
+				.mf .text {
+					margin: 8px 0px 0px 5px;
+				}
+				.mf .text span {
+					color: green;
+				}
+				
+			.mf .amounts {
+				display: flex;
+				font-weight: bold;
+				color: gray;
+				padding-bottom: 2px;
+			}
+				.mf .amount {
+						width: 100%;
+						text-align: center;
+				}
 			
 	/* MENU */
 	.mf .menu {
-			width: 16%;
+		display: flex;
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		background: #efefef;
 	}
+
+	.mf .delete i {
+	}
+
+	.mf .menu .delete {
+		text-align: center;
+	}
+
+	.mf .menu .icon {
+		margin: 5px 10px 5px 13px;
+	}
+	
+	.mf .menu-text {
+		font-size: 13px;
+		font-weight: bold;
+		margin-top: -10px !important;
+	}
+
+	.mf .reset-z {
+    z-index: -1;
+}
+
 
 	/* UNIVERSAL */
 	.align-left {
 		text-align: left !important;
+		padding-left: 10px;
+	}
+
+	.z-1 {
+		z-index: 1;
+		transition-delay: .4s;
+	}
+
+	.inline {
+		display: inline-block;
+	}
+
+	.float-right {
+		float: right;
+	}
+	.float-left {
+		float: left;
 	}
 
