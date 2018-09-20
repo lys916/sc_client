@@ -45,28 +45,40 @@
 				position: relative;
 				transform: translateX(0px);
 				transition: all .3s;
+				background: white;
 		}
 			.mf .food-name {
 				width: 100%;
 				font-weight: bold;
 				padding: 10px 10px 2px 7px;
-				background: white;
-
+				display: flex;
 			}
+
+			.mf .rotate-i {
+				transform: rotate(180deg);
+				transition: all .5s;
+			}
+
 			.mf .move-food {
-				transform: translateX(-120px);
-    transition: all .3s;
+				transform: translateX(-116px);
+    		transition: all .3s;
 			}
 				.mf .food .add i {
 					color: green;
 					font-size: 35px;
 				}
+				.mf .arrow {
+				}
 				.mf .food .arrow i {
 					font-size: 22px;
 					margin-top: 7px;
+					transition: all .5s;
 				}
 				.mf .text {
-					margin: 8px 0px 0px 5px;
+					height: 40px;
+					width: 100%;
+					padding: 7px 0px 0px 0px;
+					margin-left: 5px;
 				}
 				.mf .text span {
 					color: green;
@@ -77,6 +89,7 @@
 				font-weight: bold;
 				color: gray;
 				padding-bottom: 2px;
+				margin-top: -4px;
 			}
 				.mf .amount {
 						width: 100%;
@@ -88,7 +101,9 @@
 		display: flex;
 		position: absolute;
 		right: 0px;
-		top: 0px;
+		top: 0px;	
+		height: 71px;
+		border-bottom: 1px solid #dedede;
 		background: #efefef;
 	}
 
@@ -100,7 +115,7 @@
 	}
 
 	.mf .menu .icon {
-		margin: 5px 10px 5px 13px;
+		margin: 16px 10px 5px 13px;
 	}
 	
 	.mf .menu-text {
@@ -110,7 +125,7 @@
 	}
 
 	.mf .reset-z {
-    z-index: -1;
+		z-index: -1;
 }
 
 
@@ -121,7 +136,7 @@
 	}
 
 	.z-1 {
-		z-index: 1;
+		z-index: 0;
 		transition-delay: .4s;
 	}
 

@@ -49,16 +49,15 @@ class MyFood1 extends React.Component {
 
                             <div className={`food-name align-left`}>
 									 	<div className="add">
-                            		<i className="material-icons add inline float-left">add_circle_outline</i>
+                            		<i className="material-icons addt">add_circle_outline</i>
                               </div>
-										<div className="text inline float-left">
+										<div className="text" onClick={()=>{this.handleShowMenu(index)}}>
 											{food.name}<span> +2</span></div>
 										<div className="arrow" onClick={()=>{this.handleShowMenu(index)}}>
-                              	<i className="material-icons arrow float-right inline">arrow_back</i>
+                              	<i className={`material-icons arrow ${this.state.showMenu === index ? 'rotate-i' : null}`}>arrow_back</i>
 										</div>
                             </div>
-
-                            <div className="amounts">
+									 <div className="amounts">
                                 <div className="amount align-left">1 cup</div>
                                 <div className="amount">{food.fat}</div>
                                 <div className="amount">{food.carb}</div>
@@ -67,7 +66,7 @@ class MyFood1 extends React.Component {
                             </div>
                         </div>
 								{/* MENU */}
-								<div className={`menu ${this.state.showMenu === index ? 'z-1' : 'reset-z'}`}>
+								<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}>
 								<div className={`edit icon`}>
 									 <i className="material-icons">create</i>
 									 <div className="menu-text">Edit</div>
