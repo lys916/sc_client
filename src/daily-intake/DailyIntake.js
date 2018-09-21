@@ -187,7 +187,7 @@ class DailyIntake extends React.Component {
 		const dateToFormat = date.addDays(this.state.day);
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-
+				<div style={{position: 'sticky', top: '0px', zIndex: '1'}}>
 				<DailyDate1 mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat} username={this.props.user.username}/>
 
                 <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
@@ -197,7 +197,9 @@ class DailyIntake extends React.Component {
 					protein={protein} 
 					user={this.props.user}
 				/>
-				<br/>
+				</div>
+
+				
 				{/* <div className="my-daily-intake">
 					<div>My Daily Intake</div>
 				</div> */}
@@ -205,7 +207,7 @@ class DailyIntake extends React.Component {
 					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food' : null}
 				</div>
 
-				<GoalModal history={this.props.history} user={this.props.user} handleShowGoalModal={this.showGoalModal} handleHideGoalModal={this.hideGoalModal} showGoalModal={this.state.showGoalModal}/>
+				{/* <GoalModal history={this.props.history} user={this.props.user} handleShowGoalModal={this.showGoalModal} handleHideGoalModal={this.hideGoalModal} showGoalModal={this.state.showGoalModal}/> */}
 
 				<FoodIntake 
 					handleDeleteFood={this.handleDeleteFood} 

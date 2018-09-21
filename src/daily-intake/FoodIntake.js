@@ -19,8 +19,8 @@ class FoodIntake extends React.Component {
 
 	render() {
 		return (
-			<div className="mf">
-			<div className="sticky">
+			<div className="mf" style={{position: 'relative'}}>
+				<div style={{position: 'sticky', top: '177px', zIndex: '1', background: 'white'}}>
                <div className="title">
                   <div className="nut align-left">Amount</div>
                   <div className="nut">Fat</div>
