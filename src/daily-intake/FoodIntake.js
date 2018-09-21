@@ -1,17 +1,103 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { connect } from 'react-redux';
 
-const FoodIntake = ({handleDeleteFood, handleShowMenu, showMenu, foods, isLoading})=>{
-    console.log('is laoding', isLoading);
-    return (
-        <div className="intake-list">
-            {!isLoading ? 
-            <TransitionGroup>
-            { foods.map((food, index)=>{
-                console.log(food);
-                return (
-                    <CSSTransition key={food._id} timeout={300} classNames="fade">
-                    <div className="food-intake">
+class FoodIntake extends React.Component {
+	state = {
+		showMenu: null
+	}
+
+	handleShowMenu = (index)=>{
+		const i = this.state.showMenu;
+		if(i === null || i !== index){
+			this.setState({showMenu: index });
+		}
+		if(i === index){
+			this.setState({showMenu: null});
+		}
+	}
+
+	render() {
+		return (
+			<div className="mf">
+			<div className="sticky">
+               <div className="title">
+                  <div className="nut align-left">Amount</div>
+                  <div className="nut">Fat</div>
+                  <div className="nut">Carb</div>
+                  <div className="nut">Protein</div>
+                  <div className="nut">Calories</div>
+               </div>
+				</div>
+				{!this.props.isLoading ?
+					<TransitionGroup>
+						{this.props.dailyFoods.map((food, index) => {
+							console.log(food);
+							return (
+								<CSSTransition key={food._id} timeout={300} classNames="fade">
+									<div style={{ position: 'relative' }}>
+										<div className={`food ${this.state.showMenu === index ? 'move-food' : null}`}>
+											<div className={`food-name align-left`}>
+
+												{/* <div className="add">
+													<i className="material-icons addt">add_circle_outline</i>
+												</div> */}
+
+												<div className="text" onClick={() => { this.handleShowMenu(index) }}>
+													{food.name}<span> +2</span>
+												</div>
+
+												<div className="arrow" onClick={() => { this.handleShowMenu(index) }}>
+													<i className={`material-icons arrow ${this.state.showMenu === index ? 'rotate-i' : null}`}>arrow_back</i>
+												</div>
+
+											</div>
+
+											<div className="amounts">
+												<div className="amount align-left">{food.amount} {food.measurement}</div>
+												<div className="amount">{food.fat}</div>
+												<div className="amount">{food.carb}</div>
+												<div className="amount">{food.protein}</div>
+												<div className="amount"> {Math.ceil((food.fat * 9) + (food.carb * 4) + (food.protein * 4))}</div>
+											</div>
+										</div>
+
+										{/* MENU */}
+										<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}>
+											<div className={`edit icon`}>
+												<i className="material-icons">create</i>
+												<div className="menu-text">Edit</div>
+											</div>
+											<div className={`delete icon`} onClick={() => { this.handleDeleteFood(food._id) }}>
+												<i className="material-icons">delete_outline</i>
+												<div className="menu-text">Delete</div>
+											</div>
+										</div>
+									</div>
+								</CSSTransition>
+							)
+						})}
+					</TransitionGroup>
+					:
+					<div className="spinner-gif"><img src="./spinner.gif" /></div>
+				}
+			</div>
+		)
+	}
+}
+
+const mapStateToProps = (state) => {
+	return {
+		dailyFoods: state.dailyFoodIntake,
+		// customFoods: state.customFoods,
+		// user: state.user,
+		isLoading: state.others.isLoading
+	}
+}
+
+export default connect(mapStateToProps, {})(FoodIntake);
+
+{/* <div className="food-intake">
                         <div className="food-header">
                             <div className="food-name">
                                 {food.name} - {food.amount} {food.measurement}
@@ -47,16 +133,4 @@ const FoodIntake = ({handleDeleteFood, handleShowMenu, showMenu, foods, isLoadin
                             </div>
                         </div>
 
-                    </div>
-                    </CSSTransition>
-                )
-            })}
-            </TransitionGroup>
-            :
-                <div className="spinner-gif"><img src="./spinner.gif" /></div>
-            }
-        </div>
-    )
-}
-
-export default FoodIntake;
+                    </div> */}

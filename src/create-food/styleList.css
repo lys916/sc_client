@@ -1,0 +1,11 @@
+.list {
+    border: 1px solid #dedede;
+    box-shadow: 0px 0px 3px #dedede;
+    text-align: left;
+    padding: 10px;
+}
+.list .food {
+    border-bottom: 1px solid #dedede;
+    padding: 4px 0px;
+    font-weight: bold;
+}

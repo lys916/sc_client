@@ -5,12 +5,6 @@ const GoalIntake = ({fat, carb, protein, handleShowGoalModal, user})=>{
     
     return (
         <div>
-            <div className="goal-total-cal">
-                <div>Daily Calories</div> 
-                <div className="username">
-                    <i className="material-icons">face</i><div>{user.username}</div>
-                </div>
-            </div>
             { user.goalSet ? 
             <div>
                 <div className="goal-intake">

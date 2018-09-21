@@ -18,6 +18,7 @@ class Profile extends React.Component {
 		return (
 			<div className={`profile ${this.state.showPage ? 'show-profile-page' : null}`}>
                 PROFILE
+				<form>test</form>
 				<p>Coming soon!</p>
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				<button onClick={()=>{this.props.signOut(this.props.history)}}>Sign Out</button>

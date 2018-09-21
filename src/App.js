@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MyFood1 from './my-food/MyFood1';
 import Tabs from './tabs/Tabs';
 import Profile from './profile/Profile';
-import Calendar from './calendar/Calendar';
+import CreateFood from './create-food/CreateFood';
 import Login from './login-signup/Login';
 import Signup from './login-signup/Signup';
 import Admin from './admin/Admin';
@@ -41,7 +41,7 @@ class App extends Component {
             <Route path='/' exact component={RequireAuth(DailyIntake)} />
             <Route path='/test' component={RequireAuth(TestList)} />
             <Route path='/profile' component={RequireAuth(Profile)} />
-            <Route path='/calendar' component={RequireAuth(Calendar)} />
+            <Route path='/create' component={RequireAuth(CreateFood)} />
             <Route path="/" component={Tabs} />
             <Route path='/login' exact component={Login} />
             <Route path='/signup' exact component={Signup} />

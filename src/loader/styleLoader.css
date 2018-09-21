@@ -1,10 +1,11 @@
 .loader {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0px;
-    background:rgba(0, 0, 0, 0.6);
+    background:rgba(0, 0, 0, 0.4);
     color: white;
+    text-align: center;
 }
 
 .loader .spinner-gif {

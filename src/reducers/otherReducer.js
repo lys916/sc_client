@@ -6,7 +6,8 @@ const initOthers = {
     isLoading: false,
 	loadingMessage: null,
 	loadingCustomFood: false,
-	userErrorMessage: null
+	userErrorMessage: null,
+	creatingCustomFood: false
 }
 
 const otherReducer = (state = initOthers, action) => {
@@ -40,6 +41,11 @@ const otherReducer = (state = initOthers, action) => {
 		case 'USER_ERROR_MESSAGE':
 			return {...state, userErrorMessage: action.payload, isLoading: false}
 
+		case 'CREATING_CUSTOM_FOOD':
+			return {...state, creatingCustomFood: true}
+
+		case 'CREATED_CUSTOM_FOOD':
+			return {...state, creatingCustomFood: false}
 
 		default:
 		return state;

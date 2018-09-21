@@ -6,6 +6,7 @@ import GoalIntake from './GoalIntake';
 // import { Button, Modal } from 'react-bootstrap';
 import FoodModal from './FoodModal';
 import DailyDate from './DailyDate';
+import DailyDate1 from './DailyDate1';
 import { searchCustomFoods, getDailyFoods, addToDaily, deleteFood, getCustomFoods, toggleActive, toggleEditing, toggleSaving, resetToggle, amountOnChange} from '../actions/foodAction';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // import Moment from 'react-moment';
@@ -186,7 +187,8 @@ class DailyIntake extends React.Component {
 		const dateToFormat = date.addDays(this.state.day);
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-				<DailyDate mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat}/>
+
+				<DailyDate1 mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat} username={this.props.user.username}/>
 
                 <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
 
@@ -195,10 +197,10 @@ class DailyIntake extends React.Component {
 					protein={protein} 
 					user={this.props.user}
 				/>
-
-				<div className="my-daily-intake">
+				<br/>
+				{/* <div className="my-daily-intake">
 					<div>My Daily Intake</div>
-				</div>
+				</div> */}
 				<div className="tab-tobegin">
 					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food' : null}
 				</div>
@@ -213,9 +215,9 @@ class DailyIntake extends React.Component {
 					isLoading={this.props.isLoading}
 				/>
 				
-				<div className="add-button" onClick={this.handleShowModal}>
+				{/* <div className="add-button" onClick={this.handleShowModal}>
 					<i className="material-icons">add</i>
-				</div>
+				</div> */}
 
 				<FoodModal 
 					toggleActive={this.handleToggleActive} 

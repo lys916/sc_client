@@ -1,0 +1,51 @@
+.cform {
+    text-align: left;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    box-shadow: 0px 0px 3px #dedede;
+    position: relative;
+    padding-right: 10px;
+}
+
+.cform input {
+    width: 100%;
+    font-size: 17px;
+    margin-left: 10px;
+    padding: 3px;
+    padding-left: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.cform .unit {
+    display: flex;
+    margin-top: -5px;
+}
+.cform .select-unit {
+    border: 1px solid #cccccc;
+    color: rgb(97, 96, 96);
+    font-size: 18px;
+    height: 29px;
+    margin-top: 5px;
+}
+.cform .nuts {
+    display: flex;
+}
+.cform .nut {
+    margin-right: 10px;
+}
+.cform .carb {
+    /* margin-right: 5px; */
+}
+.cform .title {
+    font-weight: bold;
+    margin: 15px 0px 2px 10px;
+    color: #555555
+}
+
+.cform button {
+    margin: 20px 10px;
+    font-size: 18px;
+    padding: 2px 10px;
+}
+

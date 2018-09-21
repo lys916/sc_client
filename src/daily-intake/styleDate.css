@@ -1,0 +1,33 @@
+.ud {
+    display: flex;
+    justify-content: space-between;
+    background: #444444;
+    color: white;
+    font-size: 16px;
+    
+}
+.ud .datebox {
+    display: flex;
+    background: #444444;
+    margin-top: 5px;
+}
+.ud .date {
+    margin-top: 5px;
+}
+.ud .arrow {
+    background: #444444;
+    padding: 7px 20px;
+}
+.ud .arrow i {
+    background: #444444;
+    font-size: 18px;
+}
+.ud .username {
+    display: flex;
+}
+.ud .username i {
+    margin: 8px 0px 0px 10px;
+}
+.ud .name {
+    margin: 10px 0px 0px 5px;
+}

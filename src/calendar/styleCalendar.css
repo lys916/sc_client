@@ -1,8 +1,0 @@
-.calendar {
-    opacity: 0;
-}
-
-.show-calendar-page {
-    opacity: 1;
-    transition: opacity .3s;
-}

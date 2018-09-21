@@ -1,12 +1,12 @@
 /* UNIVERAL ANIMATION */
 .mouse-down {
-    background-color: black;
+    background-color: #c0e3ff;
     /* transition: background-color .5s; */
 }
 
 .mouse-up {
-    background-color: rgb(73, 73, 73);
-    transition: .3s;
+    background-color: white;
+    transition: .8s;
 }
 
 /* DATE */
@@ -42,9 +42,8 @@
 /* GOAL INTAKE */
 .goal-total-cal {
     background: var(--blue_d);
-    color: white;
+    color: #efefef;
     padding: 4px;
-    font-size: 17px;
     position: relative;
 }
 .goal-total-cal .username {
@@ -54,8 +53,8 @@
     top: 5px;
 }
 .goal-intake {
-    color: white;
-    background: var(--blue_l);
+    color: #efefef;
+    background: rgb(50, 76, 194);
     display: flex;
     justify-content: space-around;
 }
@@ -65,10 +64,11 @@
 }
 
 .in-title {
-    font-size: 14px;
+    font-size: 13px;
+    color: #efefef;
 }
 .in-amount {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .set-goal {
@@ -92,6 +92,7 @@
     position: sticky;
     top: 43px;
     z-index: 1;
+    box-shadow: 0px 1px 5px gray;
 }
 
 .nutrients {
@@ -118,7 +119,7 @@
 }
 
 .nutrient .middle {
-    font-size: 40px;
+    font-size: 30px;
     display: flex;
     margin: 0px auto;
     justify-content: center;

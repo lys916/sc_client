@@ -65,8 +65,7 @@ const customFoodReducer = (state = [], action) => {
 				return food;
 			}
 		});
-		console.log('CACHE CUSTOM', cacheCustomFoods);
-		console.log('SEARCH CUSTOM', searchResults);
+
 		return searchResults;
 
 		case 'GOT_CUSTOM_FOODS':

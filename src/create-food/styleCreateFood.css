@@ -1,0 +1,19 @@
+.cf {
+    opacity: 0;
+}
+
+.show-create-page {
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.cf button {
+    font-size: 17px;
+    border: 1px solid #dedede;
+    font-weight: bold;
+    background: #efefef;
+    color: #555555;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0px 1px 4px #b6b6b6;
+}

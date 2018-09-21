@@ -30,31 +30,66 @@ class Tabs extends React.Component {
 			this.props.history.push(`${tab}`);
 		});
 	}
+
+	handleMouseDown = (spot)=>{
+		console.log('MOUSE IS DOWN!');
+		this.setState({mouseDown: spot});
+	}
+
+	handleMouseUp = ()=>{
+		this.setState({mouseDown: ''});
+	}
 	
 	render(){
+		
 		console.log('Tabs renders');
 		if(!this.props.user._id){
 			return null;
 		}
 		return (
 			<div className="tabs">
-				<div className={`border-right tab ${this.state.active === '/' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/')}}>
+				<div className={`border-right tab
+					${this.state.active === '/' ? 'tab-active' : null}
+					${this.state.mouseDown === 'daily' ? 'mouse-down' : 'mouse-up'}`}
+					onClick={()=>{this.setActive('/')}}
+					onMouseDown={()=>{this.handleMouseDown('daily')}} 
+					onMouseUp={this.handleMouseUp}
+				>
 					<i className="material-icons">view_day</i>
 					<div className="tab-name">Daily Intake</div>
 				</div>
 
-				<div className={`border-right tab ${this.state.active === '/calendar' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/calendar')}}>
-				<i className="material-icons">today</i>
-					<div className="tab-name">Calendar</div>
-				</div>
+				<div className={`border-right tab 
+					${this.state.active === '/myfood' ? 'tab-active' : null}
+					${this.state.mouseDown === 'food' ? 'mouse-down' : 'mouse-up'}`}
+					onClick={()=>{this.setActive('/myfood')}}
+					onMouseDown={()=>{this.handleMouseDown('food')}} 
+					onMouseUp={this.handleMouseUp}
+				>
 
-				<div className={`border-right tab ${this.state.active === '/myfood' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/myfood')}}>
-				<i className="material-icons">fastfood</i>
+					<i className="material-icons">fastfood</i>
 					<div className="tab-name">My Foods</div>
 				</div>
 
-				<div className={`border-right tab ${this.state.active === '/profile' ? 'tab-active' : null}`} onClick={()=>{this.setActive('/profile')}}>
-				<i className="material-icons">person</i>
+				<div className={`border-right tab 
+					${this.state.active === '/create' ? 'tab-active' : null}
+					${this.state.mouseDown === 'create' ? 'mouse-down' : 'mouse-up'}`}
+					onClick={()=>{this.setActive('/create')}}
+					onMouseDown={()=>{this.handleMouseDown('create')}} 
+					onMouseUp={this.handleMouseUp}
+				>
+					<i className="material-icons">control_point_duplicate</i>
+					<div className="tab-name">Create Food</div>
+				</div>
+
+				<div className={`border-right tab 
+					${this.state.active === '/profile' ? 'tab-active' : null}
+					${this.state.mouseDown === 'profile' ? 'mouse-down' : 'mouse-up'}`}
+					onClick={()=>{this.setActive('/profile')}}
+					onMouseDown={()=>{this.handleMouseDown('profile')}} 
+					onMouseUp={this.handleMouseUp}
+				>
+					<i className="material-icons">person</i>
 					<div className="tab-name">Profile</div>
 				</div>
 			</div>
