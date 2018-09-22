@@ -3,57 +3,6 @@ const serverROOT = 'https://sc-back.herokuapp.com';
 // const serverROOT = 'http://localhost:5000';
 
 
-// export const NEW_POST = 'NEW_POST';
-// export const FETCHED_POSTS = 'FETCHED_POSTS';
-
-// export const deleteFood = (id) => {
-//     return ({
-//         type: 'DELETE_INTAKE',
-//         payload: id
-//     });
-// }
-// export const toggleActive = (id) => {
-//     console.log("toggling");
-//     return ({
-//         type: 'TOGGLE_ACTIVE',
-//         payload: id
-//     });
-// }
-export const toggleEditing = (id) => {
-    return ({
-        type: 'TOGGLE_EDITING',
-        payload: id
-    });
-}
-
-export const toggleSaving = (id) => {
-    return ({
-        type: 'TOGGLE_SAVING',
-        payload: id
-    });
-}
-
-export const toggleActive = (id) => {
-	return ({
-		 type: 'TOGGLE_ACTIVE',
-		 payload: id
-	});
-}
-
-export const amountOnChange = (data) => {
-	return ({
-		 type: 'AMOUNT_ON_CHANGE',
-		 payload: data
-	});
-}
-
-
-
-export const resetToggle = () => {
-	return ({
-		 type: 'RESET_TOGGLE',
-	});
-}
 
 export const addToDaily = (foods) => {
 	console.log('action adding daily food', foods);
@@ -161,6 +110,60 @@ export const deleteCustomFood = (id) => {
 	 });
  }
 }
+
+
+// export const NEW_POST = 'NEW_POST';
+// export const FETCHED_POSTS = 'FETCHED_POSTS';
+
+// export const deleteFood = (id) => {
+//     return ({
+//         type: 'DELETE_INTAKE',
+//         payload: id
+//     });
+// }
+// export const toggleActive = (id) => {
+//     console.log("toggling");
+//     return ({
+//         type: 'TOGGLE_ACTIVE',
+//         payload: id
+//     });
+// }
+export const toggleEditing = (id) => {
+    return ({
+        type: 'TOGGLE_EDITING',
+        payload: id
+    });
+}
+
+export const toggleSaving = (id) => {
+    return ({
+        type: 'TOGGLE_SAVING',
+        payload: id
+    });
+}
+
+export const toggleActive = (id) => {
+	return ({
+		 type: 'TOGGLE_ACTIVE',
+		 payload: id
+	});
+}
+
+export const amountOnChange = (data) => {
+	return ({
+		 type: 'AMOUNT_ON_CHANGE',
+		 payload: data
+	});
+}
+
+
+
+export const resetToggle = () => {
+	return ({
+		 type: 'RESET_TOGGLE',
+	});
+}
+
 
 // export const getCustomFood = (user) => {
 // 	console.log('getting custom foods');

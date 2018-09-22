@@ -177,38 +177,34 @@ class DailyIntake extends React.Component {
 		let carb = 0;
 		let protein = 0;
 		this.props.dailyFoodIntake.forEach(food=>{
-			fat += Number(food.fat);
-			carb += Number(food.carb);
-			protein += Number(food.protein);
+			fat += Math.ceil(Number(food.fat));
+			carb += Math.ceil(Number(food.carb));
+			protein += Math.ceil(Number(food.protein));
 		})
-		console.log('state date', this.state.day);
-		// date formatter
+
 		const date = new Date();
 		const dateToFormat = date.addDays(this.state.day);
 		return (
 			<div className={`daily-intake ${this.state.showIntakePage ? 'show-intake-page' : null}`}>
-				<div style={{position: 'sticky', top: '0px', zIndex: '1'}}>
-				<DailyDate1 mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat} username={this.props.user.username}/>
 
-                <GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
+				{/* make everything insdie this div stick to the top */}
+				<div style={{position: 'sticky', top: '0px', zIndex: '2', paddingBottom: '23px', backgroundColor: 'white'}}>
 
-				<AmountIntake 
-					fat={fat} carb={carb} 
-					protein={protein} 
-					user={this.props.user}
-				/>
+					{/* date component */}
+					<DailyDate1 mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat} username={this.props.user.username}/>
+					
+					{/* goal component */}
+					<GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>
+
+					{/* amount of food eaten so far */}
+					<AmountIntake 
+						fat={fat} carb={carb} 
+						protein={protein} 
+						user={this.props.user}
+					/>
 				</div>
 
-				
-				{/* <div className="my-daily-intake">
-					<div>My Daily Intake</div>
-				</div> */}
-				<div className="tab-tobegin">
-					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food' : null}
-				</div>
-
-				{/* <GoalModal history={this.props.history} user={this.props.user} handleShowGoalModal={this.showGoalModal} handleHideGoalModal={this.hideGoalModal} showGoalModal={this.state.showGoalModal}/> */}
-
+				{/* individual food list */}
 				<FoodIntake 
 					handleDeleteFood={this.handleDeleteFood} 
 					handleShowMenu={this.handleShowMenu} 
@@ -216,12 +212,20 @@ class DailyIntake extends React.Component {
 					foods={this.props.dailyFoodIntake}
 					isLoading={this.props.isLoading}
 				/>
+
+				{/* show this when user haven't added any daily food */}
+				<div className="tab-tobegin">
+					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food' : null}
+				</div>
+
+				{/* when used haven't set their goals -  modal */}
+				<GoalModal history={this.props.history} user={this.props.user} handleShowGoalModal={this.showGoalModal} handleHideGoalModal={this.hideGoalModal} showGoalModal={this.state.showGoalModal}/>
 				
 				{/* <div className="add-button" onClick={this.handleShowModal}>
 					<i className="material-icons">add</i>
 				</div> */}
 
-				<FoodModal 
+				{/* <FoodModal 
 					toggleActive={this.handleToggleActive} 
 					customFoods={this.props.customFoods} 
 					showModal={this.state.showModal} 
@@ -232,9 +236,9 @@ class DailyIntake extends React.Component {
 					errorMessage={this.state.errorMessage}
 					handleSearch={this.handleSearch}
 					handleSort={this.handleSort} 
-				/>
+				/> */}
 				
-				<br/><br/><br/><br/><br/>
+				<br/><br/><br/>
 				
 			</div>
 		)

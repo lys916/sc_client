@@ -1,5 +1,7 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { searchCustomFoods, getDailyFoods, addToDaily, deleteFood, getCustomFoods, toggleActive, toggleEditing, toggleSaving, resetToggle, amountOnChange} from '../actions/foodAction';
+
 import { connect } from 'react-redux';
 
 class FoodIntake extends React.Component {
@@ -17,34 +19,37 @@ class FoodIntake extends React.Component {
 		}
 	}
 
+	handleDeleteFood = (id)=>{
+		console.log('id', id);
+		this.props.deleteFood(id);
+		this.setState({showMenu: null});
+	}
+
 	render() {
 		return (
 			<div className="mf" style={{position: 'relative'}}>
-				<div style={{position: 'sticky', top: '177px', zIndex: '1', background: 'white'}}>
-               <div className="title">
+               <div className="title" style={{position: 'sticky', top: '199px', borderTop: '1px solid #dedede', zIndex: '2', background: 'white'}}>
                   <div className="nut align-left">Amount</div>
                   <div className="nut">Fat</div>
                   <div className="nut">Carb</div>
                   <div className="nut">Protein</div>
                   <div className="nut">Calories</div>
-               </div>
 				</div>
 				{!this.props.isLoading ?
 					<TransitionGroup>
 						{this.props.dailyFoods.map((food, index) => {
-							console.log(food);
 							return (
 								<CSSTransition key={food._id} timeout={300} classNames="fade">
 									<div style={{ position: 'relative' }}>
 										<div className={`food ${this.state.showMenu === index ? 'move-food' : null}`}>
-											<div className={`food-name align-left`}>
+											<div className="food-name align-left" style={{paddingTop: '17px'}}>
 
 												{/* <div className="add">
 													<i className="material-icons addt">add_circle_outline</i>
 												</div> */}
 
 												<div className="text" onClick={() => { this.handleShowMenu(index) }}>
-													{food.name}<span> +2</span>
+													{food.name}
 												</div>
 
 												<div className="arrow" onClick={() => { this.handleShowMenu(index) }}>
@@ -63,13 +68,13 @@ class FoodIntake extends React.Component {
 										</div>
 
 										{/* MENU */}
-										<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}>
-											<div className={`edit icon`}>
-												<i className="material-icons">create</i>
-												<div className="menu-text">Edit</div>
+										<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}  style={{height: '78px'}}>
+											<div className={`edit icon`} onClick={() => { alert() }}>
+												<i onClick={() => { alert() }} className="material-icons" style={{paddingTop: '12px'}}>create</i>
+												<div className="menu-text">Editd</div>
 											</div>
 											<div className={`delete icon`} onClick={() => { this.handleDeleteFood(food._id) }}>
-												<i className="material-icons">delete_outline</i>
+												<i className="material-icons" style={{paddingTop: '12px'}}>delete_outline</i>
 												<div className="menu-text">Delete</div>
 											</div>
 										</div>
@@ -95,7 +100,7 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, {})(FoodIntake);
+export default connect(mapStateToProps, {deleteFood})(FoodIntake);
 
 {/* <div className="food-intake">
                         <div className="food-header">

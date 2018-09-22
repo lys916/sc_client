@@ -26,7 +26,7 @@ class Login extends React.Component {
     return (
       <div className="ls">
       {this.props.others.isLoading ? 
-              <Loader message={this.props.others.loadingMessage}/> 
+              <Loader style={{marginTop: '60px'}} message={this.props.others.loadingMessage}/> 
               : null 
             }
         <div className="title">Simple Count</div><br/>

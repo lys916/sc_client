@@ -6,8 +6,9 @@
     background:rgba(0, 0, 0, 0.4);
     color: white;
     text-align: center;
+    z-index: 2;
 }
 
 .loader .spinner-gif {
-    padding-top: 60px;
+    /* padding-top: 60px; */
 }

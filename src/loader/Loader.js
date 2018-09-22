@@ -1,9 +1,10 @@
 import React from 'react';
 import './styleLoader.css';
-const Loader = ({message})=>{
+const Loader = ({message, style})=>{
     return (
         <div className="loader">
-            <div className="spinner-gif"><img src="./spinner.gif" /></div>
+            <div style={style} className="spinner-gif"><img src="./spinner.gif" /></div>
+            <div style={{fontWeigth: 'bold'}}>{message}</div>
         </div>
     )
 }

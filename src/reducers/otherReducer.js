@@ -7,7 +7,9 @@ const initOthers = {
 	loadingMessage: null,
 	loadingCustomFood: false,
 	userErrorMessage: null,
-	creatingCustomFood: false
+	creatingCustomFood: false,
+	addingToDaily: false,
+	addedToDaily: false
 }
 
 const otherReducer = (state = initOthers, action) => {
@@ -46,6 +48,12 @@ const otherReducer = (state = initOthers, action) => {
 
 		case 'CREATED_CUSTOM_FOOD':
 			return {...state, creatingCustomFood: false}
+
+		case 'ADDING_TO_DAILY':
+			return {...state, addingToDaily: true, addedToDaily: false}
+
+		case 'ADDED_TO_DAILY':
+			return {...state, addingToDaily: false, addedToDaily: true}
 
 		default:
 		return state;
