@@ -49,7 +49,7 @@
 			}
 
 			.mf .move-food {
-				transform: translateX(-108px);
+				transform: translateX(-120px);
     		transition: all .3s;
 			}
 				.mf .food .add i {
@@ -114,8 +114,10 @@
 		right: 0px;
 		top: 0px;	
 		height: 72px;
+		width: 100%;
 		border-bottom: 1px solid #dedede;
 		background: #efefef;
+		justify-content: flex-end;
 	}
 
 	.mf .delete i {
@@ -126,7 +128,8 @@
 	}
 
 	.mf .menu .icon {
-		margin: 16px 10px 5px 13px;
+		padding: 5px 5px 5px 5px;
+		margin: 8px 8px 8px 0px;
 	}
 	
 	.mf .menu-text {

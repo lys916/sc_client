@@ -152,6 +152,7 @@ const systemFoods = [
 const systemFoodReducer = (state = systemFoods, action) => {
 	switch (action.type) {
 		case 'GOT_SYSTEM_FOODS':
+
 			return action.payload;
 
 		case 'ADDED_SYSTEM_FOOD':

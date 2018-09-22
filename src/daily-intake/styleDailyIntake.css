@@ -1,13 +1,4 @@
-/* UNIVERAL ANIMATION */
-.mouse-down {
-    background-color: #c0e3ff;
-    /* transition: background-color .5s; */
-}
 
-.mouse-up {
-    background-color: white;
-    transition: .8s;
-}
 
 /* DATE */
 .date-box {

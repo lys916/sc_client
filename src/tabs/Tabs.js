@@ -17,6 +17,7 @@ class Tabs extends React.Component {
 		active: ''
 	}
 	componentDidMount(){
+		console.log('tab mount');
 		if(this.props.user._id){
 			this.props.getDailyFoods(getDateString(0), this.props.user.username);
 			this.props.getCustomFoods(this.props.user._id);
@@ -25,6 +26,15 @@ class Tabs extends React.Component {
 		}
 
 	}
+
+	// shouldComponentUpdate(nextProps, nextState){
+	// 	console.log('should update');
+	// 	if(nextState.active === 'out'){
+	// 		return false;
+	// 	}
+	// 	return true;
+	// }
+
 	setActive = (tab)=>{
 		this.setState({active: tab}, ()=>{
 			this.props.history.push(`${tab}`);
@@ -39,17 +49,30 @@ class Tabs extends React.Component {
 	handleMouseUp = ()=>{
 		this.setState({mouseDown: ''});
 	}
+
+	shouldComponentUpdate(nextProps){
+		// activetab is coming from the parent app.js component
+		// need this to set state in tab component so the next login will not go straight to profile tab
+		if(nextProps.activeTab === 'out' && this.state.active !== '/'){
+			this.setState({active: '/'});
+			return false;
+		}
+		return true;
+	  }
 	
 	render(){
-		
-		console.log('Tabs renders');
+
+		console.log('Tabs renders, prpos', this.props);
 		if(!this.props.user._id){
 			return null;
 		}
+		// if(!this.props.user.username && this.state.active !== 'out'){
+		// 	this.setState({active: 'out'});
+		// }
 		return (
 			<div className="tabs">
 				<div className={`border-right tab
-					${this.state.active === '/' ? 'tab-active' : null}
+					${this.state.active === '/' || this.state.active === '' ? 'tab-active' : null}
 					${this.state.mouseDown === 'daily' ? 'mouse-down' : 'mouse-up'}`}
 					onClick={()=>{this.setActive('/')}}
 					onMouseDown={()=>{this.handleMouseDown('daily')}} 

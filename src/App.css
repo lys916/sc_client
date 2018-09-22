@@ -26,3 +26,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+/* UNIVERAL ANIMATION */
+.mouse-down {
+  background-color: #c0e3ff;
+  /* transition: background-color .5s; */
+}
+
+.mouse-up {
+  background-color: white;
+  transition: .8s;
+}
+
+.down-gray {
+  background-color: #dedede;
+}

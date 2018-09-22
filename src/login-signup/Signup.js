@@ -24,12 +24,22 @@ class SignUp extends React.Component {
   
   render() {
     return (
-      <div className="ls">
-        {this.props.others.isLoading ? 
+      <div className="ls-mc">
+      {this.props.others.isLoading ? 
               <Loader style={{marginTop: '60px'}} message={this.props.others.loadingMessage}/> 
               : null 
             }
-        <div className="title">Simple Count</div><br/>
+      <div className="ls">
+        
+          
+        {/* LOGO */}
+        <div className="logo">
+          <div className="text">Simple Count</div>
+          {/* <div className="partial">ple Co</div> */}
+          <div className="circle"></div>
+        </div>
+        
+        <br/><br/>
         {this.props.others.userErrorMessage ? <div className="error-message">{this.props.others.userErrorMessage}</div> : null}
         <input type="text" name="name" value={this.state.name} 
         placeholder="Username" onChange={this.handleOnChange}/><br />
@@ -37,10 +47,11 @@ class SignUp extends React.Component {
         <input type="password" name="password" value={this.state.password} 
         placeholder="Password" onChange={this.handleOnChange}/><br />
 
-        <button onClick={() => {this.handleSignUp()}}>Sign up</button><br />
-        <div className="have-account">Already have an account? <Link to="/">Log in</Link></div>
+        <button onClick={() => {this.handleSignUp()}}>REGISTER</button><br />
+        <div className="have-account">Already have an account? <Link to="/">Log in!</Link></div>
         
         <br />
+      </div>
       </div>
     );
   }

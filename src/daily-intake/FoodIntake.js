@@ -42,7 +42,7 @@ class FoodIntake extends React.Component {
 								<CSSTransition key={food._id} timeout={300} classNames="fade">
 									<div style={{ position: 'relative' }}>
 										<div className={`food ${this.state.showMenu === index ? 'move-food' : null}`}>
-											<div className="food-name align-left" style={{paddingTop: '17px'}}>
+											<div className="food-name align-left">
 
 												{/* <div className="add">
 													<i className="material-icons addt">add_circle_outline</i>
@@ -68,13 +68,13 @@ class FoodIntake extends React.Component {
 										</div>
 
 										{/* MENU */}
-										<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}  style={{height: '78px'}}>
+										<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}>
 											<div className={`edit icon`} onClick={() => { alert() }}>
-												<i onClick={() => { alert() }} className="material-icons" style={{paddingTop: '12px'}}>create</i>
-												<div className="menu-text">Editd</div>
+												<i onClick={() => { alert() }} className="material-icons">create</i>
+												<div className="menu-text">Edit</div>
 											</div>
 											<div className={`delete icon`} onClick={() => { this.handleDeleteFood(food._id) }}>
-												<i className="material-icons" style={{paddingTop: '12px'}}>delete_outline</i>
+												<i className="material-icons">delete_outline</i>
 												<div className="menu-text">Delete</div>
 											</div>
 										</div>

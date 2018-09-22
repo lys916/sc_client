@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signOut } from '../actions/userAction';
 
 import './styleProfile.css';
 
@@ -9,6 +8,7 @@ class Username extends React.Component {
 	}
 
 	render() {
+        console.log(this.props);
 		const user = this.props.user;
 		return (
 			<div className="ui">
@@ -17,7 +17,7 @@ class Username extends React.Component {
                         <div className="avatar"></div>
                         <div className="name-box">
                             <div className="username">{user.username}</div>
-                            <div className="signout" onClick={() => { this.props.signOut(this.props.history) }}>Sign out</div>
+                            <div className="signout" onClick={()=>{this.props.signOut(this.props.history)}}>Sign out</div>
                         </div>
                     </div>
                     <div className="right">
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { signOut })(Username);
+export default connect(mapStateToProps, { })(Username);

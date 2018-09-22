@@ -10,6 +10,7 @@ class Info extends React.Component {
 		const user = this.props.user;
 		console.log(user);
 		return (
+			user.goalSet ? 
 			<div className="ui">
 				<div className="header">
 					<div className="title title-main">USER INFO:</div>
@@ -20,7 +21,7 @@ class Info extends React.Component {
 				<div className="title">Age: <span>{user.age}</span></div>
 				<div className="title">Height: <span>{user.height.feet} ft {user.height.inch} in</span></div>
 				<div className="title">Weight: <span>{user.weight}</span></div>
-			</div>
+			</div> : <button>Set my goal</button>
 		)
 	}
 }

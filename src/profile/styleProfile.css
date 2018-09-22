@@ -67,25 +67,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .profile button {
     font-size: 18px;
-    background: rgb(221, 119, 119);
-    border: 1px solid #efefef;
-    padding: 3px 10px;
+    background: #4389d6;
+    border: none;
+    padding: 3px 15px;
     color: white;
 }

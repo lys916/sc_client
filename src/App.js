@@ -8,6 +8,7 @@ import Signup from './login-signup/Signup';
 import Admin from './admin/Admin';
 import DailyIntake from './daily-intake/DailyIntake';
 import TestList from './test-components/TestList';
+import {signOut} from './actions/userAction';
 // import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import { Router, Route } from 'react-router-dom';
 import configureHistory from './configureHistory.js';
@@ -22,11 +23,18 @@ class App extends Component {
   state = {
     showModal: false,
     editedCustomFoods: this.props.modalCustomFoods,
-    errorMessage: null
+    errorMessage: null,
+    activeTab: null
+  }
+
+  signOut = (history)=>{
+    console.log(history);
+    this.props.signOut(history);
+    this.setState({activeTab: 'out'});
   }
 
   render() {
-    console.log('App.js renders');
+
     return (
       <div className="App">
 
@@ -40,9 +48,9 @@ class App extends Component {
             <Route path='/myfood' component={RequireAuth(MyFood1)} />
             <Route path='/' exact component={RequireAuth(DailyIntake)} />
             <Route path='/test' component={RequireAuth(TestList)} />
-            <Route path='/profile' component={RequireAuth(Profile)} />
+            <Route path='/profile' render={(props) => <Profile {...props} signOut={this.signOut} />} />
             <Route path='/create' component={RequireAuth(CreateFood)} />
-            <Route path="/" component={Tabs} />
+            <Route path="/" render={(props)=><Tabs {...props} activeTab={this.state.activeTab} />} />
             <Route path='/login' exact component={Login} />
             <Route path='/signup' exact component={Signup} />
             <Route path='/admin' exact component={Admin} />
@@ -53,11 +61,11 @@ class App extends Component {
     );
   }
 }
-export default App;
-// const mapStateToProps = (state) => {
-// 	return {
-//     others: state.others
-// 	} 
-// }
+// export default App;
+const mapStateToProps = (state) => {
+	return {
 
-// export default connect(mapStateToProps, { })(App);
+	} 
+}
+
+export default connect(mapStateToProps, { signOut })(App);

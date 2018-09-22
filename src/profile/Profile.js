@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signOut } from '../actions/userAction';
 import Info from './Info';
 import Goal from './Goal';
 import Username from './Username';
@@ -19,7 +18,7 @@ class Profile extends React.Component {
 		console.log('Profile renders');
 		return (
 			<div className={`profile ${this.state.showPage ? 'show-profile-page' : null}`}>
-				<Username history={this.props.history}/>
+				<Username signOut={this.props.signOut} history={this.props.history}/>
 				<Info />
 				<Goal />
 			</div>
@@ -32,4 +31,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { signOut })(Profile);
+export default connect(mapStateToProps, { })(Profile);

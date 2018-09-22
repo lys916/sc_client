@@ -97,7 +97,7 @@ class CreateFood extends React.Component {
 	}
 
 	render(){
-		console.log('state', this.state.creating);
+		console.log('state system food', this.state.systemFoods);
 		return (
 			<div className={`cf ${this.state.showPage ? 'show-create-page' : null}`}>
             <SearchBar handleSearch={this.handleSearch} searchTerm={this.state.searchTerm}/>
