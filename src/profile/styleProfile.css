@@ -1,10 +1,87 @@
 .profile {
     opacity: 0;
+    padding: 5px;
 }
 .show-profile-page {
     opacity: 1;
     transition: opacity .3s;
 }
+/* INFO */
+.ui {
+    border: 1px solid #dedede;
+    text-align: left;
+    margin: 20px 10px;
+    box-shadow: 0px 1px 4px #dedede;
+    border-radius: 3px;
+}
+.ui .header {
+    display: flex;
+    justify-content: space-between;
+    background: #dedede;
+}
+
+.ui .title {
+    padding: 3px 5px;
+    font-weight: bold;
+}
+.ui .title-main {
+    padding-top: 6px;
+}
+
+.ui .title span {
+    color: #666666;
+}
+
+/* USERNAME */
+.ui .un {
+    display: flex;
+    justify-content: space-between;
+    background: #dedede;
+}
+.ui .left {
+    display: flex;
+}
+.ui .avatar {
+    border: 1px solid #dedede;
+    margin: 4px; 
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background: gray;
+}
+.ui .name-box {
+    font-weight: bold;
+}
+.ui .username {
+    font-size: 20px;
+    padding: 2px 5px;
+}
+.ui .signout {
+    padding: 0px 5px;
+    color: #666666;
+}
+.ui i {
+    font-size: 20px;
+    padding: 4px 4px 0px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .profile button {
     font-size: 18px;
     background: rgb(221, 119, 119);
