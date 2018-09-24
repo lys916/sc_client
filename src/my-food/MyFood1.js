@@ -20,15 +20,23 @@ class MyFood1 extends React.Component {
 	state = {
 		showMenu: null,
 		day: 0,
-		adding: null
+		adding: null,
+		editing: null,
+		amount: '',
+		fat: '', 
+		carb: '',
+		protein: '',
+		selectedFood: null,
+		measurement: null
 	}
 
 
 
 	handleShowMenu = (index) => {
 		const i = this.state.showMenu;
+		const {fat, carb, protein, amount} = this.props.customFoods[index];
 		if (i === null || i !== index) {
-			this.setState({ showMenu: index });
+			this.setState({ showMenu: index, fat, carb, protein, amount });
 		}
 		if (i === index) {
 			this.setState({ showMenu: null });
@@ -48,7 +56,8 @@ class MyFood1 extends React.Component {
 			protein: food.protein,
 			amount: food.amount,
 			dateString: getDateString(this.state.day),
-			userName: this.props.user.username
+			userName: this.props.user.username,
+			selectedFood: null
 		}
 		this.setState({ adding: index }, () => {
 			this.props.addToDaily(toAdd);
@@ -96,7 +105,52 @@ class MyFood1 extends React.Component {
 		this.setState({ showMenu: null });
 	}
 
+	handleEditFood = (index) => {
+		console.log('sleectefood', this.props.customFoods[index]);
+		this.setState({ showMenu: null, editing: index, selectedFood: this.props.customFoods[index] });
+	}
+
+	handleOnChange=(event)=>{
+		console.log('targetXXXXXXXXXXXX', event.target.value);
+		this.setState({
+			[event.target.name]: event.target.value
+		});
+
+		if(Number(event.target.value) > 0 && event.target.name === 'amount'){
+			const { selectedFood } = this.state;
+
+			let { fat, carb, protein } = selectedFood;
+			fat = fat * (Number(event.target.value)/selectedFood.amount);
+			carb = carb * (Number(event.target.value)/selectedFood.amount);
+			protein = protein * (Number(event.target.value)/selectedFood.amount);
+
+			// trim float number
+			if(fat.toString().includes('.')){
+				fat = fat.toFixed(1);
+			}
+			if(carb.toString().includes('.')){
+				carb = carb.toFixed(1);
+			}
+			if(protein.toString().includes('.')){
+				protein = protein.toFixed(1);
+			}
+
+			this.setState({fat, carb, protein});
+		}
+
+		if(event.target.value === '' && event.target.name === 'amount'){
+			this.setState({fat: 0, carb: 0, protein: 0});
+		}
+	}
+
+	handleSaveChange=()=>{
+		this.setState({
+			editing: null,
+		});
+	}
+
 	render() {
+		console.log('state', this.state);
 		// const custom = this.props.customFoods;
 
 		// const cus = this.props.dailyFoods.map(food=>{
@@ -153,8 +207,11 @@ class MyFood1 extends React.Component {
 									<div className={`food ${this.state.showMenu === index ? 'move-food' : null}`}>
 										<div className={`food-name align-left`}>
 
-											<div onClick={() => { this.handleAddToDaily(food, index) }} className="add">
-												<i className="material-icons addt">add_circle_outline</i>
+											<div className="add">
+												{this.state.editing === index ? 
+													<i onClick={this.handleSaveChange} style={{color: 'blue'}} className="material-icons addt">check_circle_outline</i> : 
+													<i onClick={() => { this.handleAddToDaily(food, index) }} className="material-icons addt">add_circle_outline</i>
+												}	
 											</div>
 
 											<div className="text" onClick={() => { this.handleShowMenu(index) }}>
@@ -168,17 +225,24 @@ class MyFood1 extends React.Component {
 										</div>
 
 										<div className="amounts">
-											<div className="amount align-left" style={{color: 'black'}}>{food.amount} {food.measurement}</div>
-											<div className="amount">{food.fat}</div>
-											<div className="amount">{food.carb}</div>
-											<div className="amount">{food.protein}</div>
+											{this.state.editing === index ? 
+											<div className="amount unit">
+												<input name="amount" onChange={this.handleOnChange} value={this.state.amount} /> {food.measurement}
+											</div> 
+											: 
+												<div className="amount align-left" style={{color: 'black'}}>{food.amount} {food.measurement}</div>
+											}
+											
+											{this.state.editing === index ? <div className="amount"><input name="fat" onChange={this.handleOnChange} value={this.state.fat}/></div> : <div className="amount">{food.fat}</div>}
+											{this.state.editing === index ? <div className="amount"><input name="carb" onChange={this.handleOnChange} value={this.state.carb}/></div> : <div className="amount">{food.carb}</div>}
+											{this.state.editing === index ? <div className="amount"><input name="protein" onChange={this.handleOnChange} value={this.state.protein}/></div> : <div className="amount">{food.protein}</div>}
 											<div className="amount"> {Math.ceil((food.fat * 9) + (food.carb * 4) + (food.protein * 4))}</div>
 										</div>
 									</div>
 
 									{/* MENU */}
 									<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}>
-										<div className={`edit icon`}>
+										<div className={`edit icon`} onClick={() => { this.handleEditFood(index) }}>
 											<i className="material-icons">create</i>
 											<div className="menu-text">Edit</div>
 										</div>
