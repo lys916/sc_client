@@ -69,8 +69,8 @@ class FoodIntake extends React.Component {
 
 										{/* MENU */}
 										<div className={`menu reset-z ${this.state.showMenu === index ? 'z-1' : null}`}>
-											<div className={`edit icon`} onClick={() => { alert() }}>
-												<i onClick={() => { alert() }} className="material-icons">create</i>
+											<div className={`edit icon`} onClick={() => {  }}>
+												<i onClick={() => {  }} className="material-icons">create</i>
 												<div className="menu-text">Edit</div>
 											</div>
 											<div className={`delete icon`} onClick={() => { this.handleDeleteFood(food._id) }}>

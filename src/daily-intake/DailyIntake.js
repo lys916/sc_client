@@ -51,8 +51,9 @@ class DailyIntake extends React.Component {
 	// }
 
 	componentDidMount(){
-		console.log('daily intake component mounted');
-		// this.props.getDailyFood(getDateString(0));
+		if(this.props.user.username){
+			this.props.getDailyFoods(getDateString(0), this.props.user.username);
+		}
 
 		setTimeout(()=>{
 			this.setState({showIntakePage: true});
@@ -191,7 +192,15 @@ class DailyIntake extends React.Component {
 				<div style={{position: 'sticky', top: '0px', zIndex: '2', paddingBottom: '23px', backgroundColor: 'white'}}>
 
 					{/* date component */}
-					<DailyDate1 mouseDown={this.state.mouseDown} mouseUp={this.state.mouseUp} handleMouseDown={this.handleMouseDown} handleMouseUp={this.handleMouseUp} handleSetDay={this.handleSetDay} dateToFormat={dateToFormat} username={this.props.user.username}/>
+					<DailyDate1 
+						mouseDown={this.state.mouseDown} 
+						mouseUp={this.state.mouseUp} 
+						handleMouseDown={this.handleMouseDown} 
+						handleMouseUp={this.handleMouseUp} 
+						handleSetDay={this.handleSetDay} 
+						dateToFormat={dateToFormat} 
+						username={this.props.user.username}
+					/>
 					
 					{/* goal component */}
 					<GoalIntake fat={fat} carb={carb} protein={protein} showModal={this.state.showModal} user={this.props.user} handleShowGoalModal={this.showGoalModal}/>

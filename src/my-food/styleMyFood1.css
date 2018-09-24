@@ -85,7 +85,7 @@
 					display: flex;
 				}
 
-				.mf input {
+				.mf .amounts input {
 					width: 50%;
 					margin-left: 10%;
 					text-align: center;
@@ -94,6 +94,10 @@
 				.mf .amount {
 					width: 100%;
 					text-align: center;
+				} 
+
+				.mf .added  {
+					color: green;
 				}
 				
 

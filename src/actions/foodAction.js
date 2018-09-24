@@ -111,6 +111,19 @@ export const deleteCustomFood = (id) => {
  }
 }
 
+export const updateCustomFood = (food) => {
+	console.log('UPDATE THIS, ', food);
+	return (dispatch) => {
+	 axios.post(`${serverROOT}/customFood/updateFood`, food).then(res => {
+		 console.log('KKKKKK UPDATED CUST FOOD, ', res.data );
+		 dispatch({
+			 type: 'UPDATED_CUSTOM_FOOD',
+			 payload: res.data
+		 });
+	 });
+ }
+}
+
 
 // export const NEW_POST = 'NEW_POST';
 // export const FETCHED_POSTS = 'FETCHED_POSTS';

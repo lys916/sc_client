@@ -82,6 +82,15 @@ const customFoodReducer = (state = [], action) => {
 			});
 			return deleted;
 
+			case 'UPDATED_CUSTOM_FOOD':
+			const updated = state.map(food=>{
+				if(food._id === action.payload._id){
+					return action.payload;
+				}
+				return food;
+			});
+			return updated;
+
 		default:
 			return state;
 	}
@@ -106,48 +115,7 @@ const dailyFoodIntakeReducer = (state = [], action) => {
 	}
 };
 
-const systemFoods = [
-	// {
-	// 	name: 'Chicken Breast Cooked',
-	// 	measurements: ['cup', 'oz'],
-	// 	cup: {
-	// 		fat: 3,
-	// 		carb: 0,
-	// 		protein: 40
-	// 	},
-	// 	oz: {
-	// 		fat: 1,
-	// 		carb: 0,
-	// 		protein: 10
-	// 	},
-	// 	id: 1,
-	// },
-	// {
-	// 	name: 'Chicken Breast Raw',
-	// 	measurements: ['cup', 'oz'],
-	// 	cup: {
-	// 		fat: 4,
-	// 		carb: 0,
-	// 		protein: 45
-	// 	},
-	// 	oz: {
-	// 		fat: 1,
-	// 		carb: 0,
-	// 		protein: 10
-	// 	},
-	// 	id: 2,
-	// },
-	// {
-	// 	name: 'brocolli cooked',
-	// 	measurements: ['cup'],
-	// 	cup: {
-	// 		fat: .3,
-	// 		carb: 10,
-	// 		protein: 1
-	// 	},
-	// 	id: 3,
-	// }
-];
+const systemFoods = [];
 
 const systemFoodReducer = (state = systemFoods, action) => {
 	switch (action.type) {
