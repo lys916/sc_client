@@ -1,8 +1,9 @@
 import React from 'react';
 import Loader from '../loader/Loader';
 import './styleCreateForm.css';
+const units = ['cup', 'oz', 'gram', 'tsp', 'tbsp', 'lb']
 
-const CreateForm = ({handleOnChange, name, fat, carb, protein, handleCreateFood, handleCancelCreate, amount, creating})=>{
+const CreateForm = ({handleOnChange, name, fat, carb, protein, handleCreateFood, handleCancelCreate, amount, creating, selectedFood})=>{
 	return (
         <form className="cform">
             <div className="name nut">
@@ -15,14 +16,19 @@ const CreateForm = ({handleOnChange, name, fat, carb, protein, handleCreateFood,
                 <div className="amount">
                     <input name="amount" value={amount} onChange={handleOnChange} placeholder="Amount"/>
                 </div>
-                <select className="select-unit" name="measurement" onChange={handleOnChange}>
-                    <option value="cup">cup</option>
-                    <option value="oz">oz</option>
-                    <option value="gram">gram</option>
-                    <option value="tsp">tsp</option>
-                    <option value="tbsp">tbsp</option>
-                    <option value="lb">lb</option>
-                </select>
+                { selectedFood ? 
+					<select className="select-unit" name="measurement" onChange={handleOnChange}>
+					{ selectedFood.measurements.map((unit)=>{
+						return <option value={unit}>{unit}</option>
+					})}
+					</select>
+				:
+					<select className="select-unit" name="measurement" onChange={handleOnChange}>
+					{ units.map((unit)=>{
+						return <option value={unit}>{unit}</option>
+					})}
+					</select>
+				 }
             </div> 
             
             <div className="nuts">

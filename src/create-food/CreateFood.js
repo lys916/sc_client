@@ -80,8 +80,36 @@ class CreateFood extends React.Component {
 	}
 
 	handleOnChange = (event)=>{
-		console.log(event.target.value);
+
 		this.setState({[event.target.name]: event.target.value});
+
+		// calculate nutritient base on the amount input
+		if(Number(event.target.value) > 0 && event.target.name === 'amount'){
+			const { selectedFood, measurement } = this.state;
+			let { fat, carb, protein } = selectedFood[measurement];
+			fat = fat * Number(event.target.value);
+			carb = carb * Number(event.target.value);
+			protein = protein * Number(event.target.value);
+
+			// trim float number
+			if(fat.toString().includes('.')){
+				fat = fat.toFixed(1);
+			}
+			if(carb.toString().includes('.')){
+				carb = carb.toFixed(1);
+			}
+			if(protein.toString().includes('.')){
+				protein = protein.toFixed(1);
+			}
+
+			this.setState({fat, carb, protein});
+		}
+
+		if(event.target.value === '' && event.target.name === 'amount'){
+			this.setState({fat: 0, carb: 0, protein: 0});
+		}
+
+		
 	}
 
 	handleCancelCreate = ()=>{
@@ -120,6 +148,7 @@ class CreateFood extends React.Component {
 						protein={this.state.protein} 
 						amount={this.state.amount}
 						name={this.state.name}
+						selectedFood={this.state.selectedFood}
 						creating={this.props.others.creatingCustomFood}/>
 						: null
 				}

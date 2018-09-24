@@ -168,7 +168,7 @@ class MyFood1 extends React.Component {
 										</div>
 
 										<div className="amounts">
-											<div className="amount align-left">{food.amount} {food.measurement}</div>
+											<div className="amount align-left" style={{color: 'black'}}>{food.amount} {food.measurement}</div>
 											<div className="amount">{food.fat}</div>
 											<div className="amount">{food.carb}</div>
 											<div className="amount">{food.protein}</div>

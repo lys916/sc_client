@@ -39,8 +39,8 @@
 			.mf .food-name {
 				width: 100%;
 				font-weight: bold;
-				padding: 10px 10px 2px 7px;
 				display: flex;
+				align-items: center;
 			}
 
 			.mf .rotate-i {
@@ -51,22 +51,23 @@
 			.mf .move-food {
 				transform: translateX(-120px);
     		transition: all .3s;
-			}
+			}	
+				.mf .food .add {
+				}
 				.mf .food .add i {
 					color: green;
 					font-size: 35px;
+					padding-top: 6px;
 				}
 				.mf .arrow {
 				}
 				.mf .food .arrow i {
 					font-size: 22px;
-					margin-top: 7px;
 					transition: all .5s;
+					padding: 12px 8px;
 				}
 				.mf .text {
-					height: 40px;
 					width: 100%;
-					padding: 7px 0px 0px 0px;
 					margin-left: 5px;
 				}
 				.mf .text span {
@@ -79,11 +80,13 @@
 				color: gray;
 				padding-bottom: 2px;
 				margin-top: -4px;
-			}
+			}	
+
 				.mf .amount {
-						width: 100%;
-						text-align: center;
+					width: 100%;
+					text-align: center;
 				}
+				
 
 		.mf .you-added {
 			background: rgb(0, 125, 241);
@@ -125,6 +128,11 @@
 
 	.mf .menu .delete {
 		text-align: center;
+		color: rgb(255, 0, 0);
+	}
+	.mf .menu .edit {
+		text-align: center;
+		color: rgb(0, 81, 255);
 	}
 
 	.mf .menu .icon {
