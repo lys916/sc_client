@@ -18,7 +18,6 @@ export const signOut = (history) => {
 }
 
 export const signUp = (newUser, history) => {
-  console.log('USER SIGNING UP', newUser);
   if(newUser.name !== '' || newUser.password !== ''){
     return (dispatch) => {
       dispatch({
@@ -26,14 +25,12 @@ export const signUp = (newUser, history) => {
       });
       axios.post(`${serverROOT}/user/signup`, newUser)
       .then(res => {
-        console.log('singup rentrun', res);
         if(res.data.errorMessage){
           dispatch({
             type: 'USER_ERROR_MESSAGE',
             payload: res.data.errorMessage
           });
         }else{
-          console.log('TRUE????????');
           localStorage.setItem('user', JSON.stringify(res.data));
           dispatch({
               type: LOGGED_IN,

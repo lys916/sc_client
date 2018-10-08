@@ -4,10 +4,8 @@ import AmountIntake from './AmountIntake';
 import FoodIntake from './FoodIntake';
 import GoalIntake from './GoalIntake';
 // import { Button, Modal } from 'react-bootstrap';
-import FoodModal from './FoodModal';
-import DailyDate from './DailyDate';
 import DailyDate1 from './DailyDate1';
-import { searchCustomFoods, getDailyFoods, addToDaily, deleteFood, getCustomFoods, toggleActive, toggleEditing, toggleSaving, resetToggle, amountOnChange} from '../actions/foodAction';
+import { searchCustomFoods, getDailyFoods, addToDaily, deleteFood, getCustomFoods} from '../actions/foodAction';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // import Moment from 'react-moment';
 import 'moment-timezone';
@@ -121,28 +119,28 @@ class DailyIntake extends React.Component {
 
 	// ASSIGN ORIGINAL CUSTOM FOOD TO STATE AT COMPONENT MOUNT TO CLEAN UP THE CODE
 
-	handleToggleEditing = (id)=>{
-		this.props.toggleEditing(id);
-	}
-	handleToggleSaving = (id)=>{
-		this.props.toggleSaving(id);
-	}
-	handleToggleActive = (id)=>{
-		this.props.toggleActive(id);
-	}
+	// handleToggleEditing = (id)=>{
+	// 	this.props.toggleEditing(id);
+	// }
+	// handleToggleSaving = (id)=>{
+	// 	this.props.toggleSaving(id);
+	// }
+	// handleToggleActive = (id)=>{
+	// 	this.props.toggleActive(id);
+	// }
 
-	handleOnChange = (event, id)=>{
-		const data = {
-			name: event.target.name,
-			value: event.target.value,
-			_id: id
-		}
-		this.props.amountOnChange(data);
-	}
+	// handleOnChange = (event, id)=>{
+	// 	const data = {
+	// 		name: event.target.name,
+	// 		value: event.target.value,
+	// 		_id: id
+	// 	}
+	// 	this.props.amountOnChange(data);
+	// }
 
-	handleSearch = (event)=>{
-		this.props.searchCustomFoods(event.target.value);
-	}
+	// handleSearch = (event)=>{
+	// 	this.props.searchCustomFoods(event.target.value);
+	// }
 
 	showGoalModal = ()=>{
 		this.setState({showGoalModal: true});
@@ -263,4 +261,4 @@ const mapStateToProps = (state) => {
 	} 
 }
 
-export default connect(mapStateToProps, {toggleEditing, toggleSaving, getDailyFoods, deleteFood, addToDaily, getCustomFoods, toggleActive, resetToggle, searchCustomFoods, amountOnChange })(DailyIntake);
+export default connect(mapStateToProps, {getDailyFoods, deleteFood, addToDaily, getCustomFoods, searchCustomFoods })(DailyIntake);

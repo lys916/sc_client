@@ -21,12 +21,15 @@
     display: flex;
     margin-top: -5px;
 }
+.cform .amount {
+    width: 20%;
+}
 .cform .select-unit {
     border: 1px solid #cccccc;
     color: rgb(97, 96, 96);
     font-size: 18px;
-    height: 29px;
-    margin-top: 5px;
+    height: 32px;
+    margin-left: 20px;
 }
 .cform .nuts {
     display: flex;

@@ -115,7 +115,6 @@ export const updateCustomFood = (food) => {
 	console.log('UPDATE THIS, ', food);
 	return (dispatch) => {
 	 axios.post(`${serverROOT}/customFood/updateFood`, food).then(res => {
-		 console.log('KKKKKK UPDATED CUST FOOD, ', res.data );
 		 dispatch({
 			 type: 'UPDATED_CUSTOM_FOOD',
 			 payload: res.data
@@ -124,58 +123,41 @@ export const updateCustomFood = (food) => {
  }
 }
 
-
-// export const NEW_POST = 'NEW_POST';
-// export const FETCHED_POSTS = 'FETCHED_POSTS';
-
-// export const deleteFood = (id) => {
+// export const toggleEditing = (id) => {
 //     return ({
-//         type: 'DELETE_INTAKE',
+//         type: 'TOGGLE_EDITING',
 //         payload: id
 //     });
 // }
+
+// export const toggleSaving = (id) => {
+//     return ({
+//         type: 'TOGGLE_SAVING',
+//         payload: id
+//     });
+// }
+
 // export const toggleActive = (id) => {
-//     console.log("toggling");
-//     return ({
-//         type: 'TOGGLE_ACTIVE',
-//         payload: id
-//     });
+// 	return ({
+// 		 type: 'TOGGLE_ACTIVE',
+// 		 payload: id
+// 	});
 // }
-export const toggleEditing = (id) => {
-    return ({
-        type: 'TOGGLE_EDITING',
-        payload: id
-    });
-}
 
-export const toggleSaving = (id) => {
-    return ({
-        type: 'TOGGLE_SAVING',
-        payload: id
-    });
-}
-
-export const toggleActive = (id) => {
-	return ({
-		 type: 'TOGGLE_ACTIVE',
-		 payload: id
-	});
-}
-
-export const amountOnChange = (data) => {
-	return ({
-		 type: 'AMOUNT_ON_CHANGE',
-		 payload: data
-	});
-}
+// export const amountOnChange = (data) => {
+// 	return ({
+// 		 type: 'AMOUNT_ON_CHANGE',
+// 		 payload: data
+// 	});
+// }
 
 
 
-export const resetToggle = () => {
-	return ({
-		 type: 'RESET_TOGGLE',
-	});
-}
+// export const resetToggle = () => {
+// 	return ({
+// 		 type: 'RESET_TOGGLE',
+// 	});
+// }
 
 
 // export const getCustomFood = (user) => {

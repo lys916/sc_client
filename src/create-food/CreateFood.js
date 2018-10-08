@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import SearchBar from '../search-bar/SearchBar';
 import List from './List';
 import CreateForm from './CreateForm';
-import SelectedFood from './SelectedFood';
 import {createCustomFood} from '../actions/foodAction';
 
 import './styleCreateFood.css';
-import '../my-food/styleMyFood.css';
 class CreateFood extends React.Component {
     state = {
 		showPage: false,
@@ -21,7 +19,8 @@ class CreateFood extends React.Component {
 		fat: '',
 		carb: '',
 		protein: '',
-		searchTerm: ''
+		searchTerm: '',
+		unitIndex: 0
     }
     componentDidMount(){
 		setTimeout(()=>{
@@ -58,12 +57,12 @@ class CreateFood extends React.Component {
 
 	handleSelectFood = (food)=>{
 		if(food.measurements){
-			const {fat, carb, protein } = food[food.measurements[0]];
+			const {fat, carb, protein } = food[food.measurements[this.state.unitIndex]];
 			this.setState({
 				selectedFood: food, 
 				name: food.name, 
 				showList: false,
-				measurement: food.measurements[0],
+				measurement: food.measurements[this.state.unitIndex],
 				fat, carb, protein,
 				searchTerm: '',
 				creating: true
@@ -82,6 +81,15 @@ class CreateFood extends React.Component {
 	handleOnChange = (event)=>{
 
 		this.setState({[event.target.name]: event.target.value});
+
+		if(event.target.name === 'measurement'){
+			let {fat, carb, protein} = this.state.selectedFood[event.target.value];
+			fat = fat * this.state.amount;
+			carb = carb * this.state.amount;
+			protein = protein * this.state.amount;
+			
+			this.setState({fat, carb, protein});
+		}
 
 		// calculate nutritient base on the amount input
 		if(Number(event.target.value) > 0 && event.target.name === 'amount'){

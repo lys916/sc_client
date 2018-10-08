@@ -1,6 +1,6 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { searchCustomFoods, getDailyFoods, addToDaily, deleteFood, getCustomFoods, toggleActive, toggleEditing, toggleSaving, resetToggle, amountOnChange} from '../actions/foodAction';
+import {deleteFood} from '../actions/foodAction';
 
 import { connect } from 'react-redux';
 

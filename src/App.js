@@ -33,6 +33,10 @@ class App extends Component {
     this.setState({activeTab: 'out'});
   }
 
+  tapping = ()=>{
+		this.setState({activeTab: null});
+	}
+
   render() {
 
     return (
@@ -50,7 +54,7 @@ class App extends Component {
             <Route path='/test' component={RequireAuth(TestList)} />
             <Route path='/profile' render={(props) => <Profile {...props} signOut={this.signOut} />} />
             <Route path='/create' component={RequireAuth(CreateFood)} />
-            <Route path="/" render={(props)=><Tabs {...props} activeTab={this.state.activeTab} />} />
+            <Route path="/" render={(props)=><Tabs {...props} activeTab={this.state.activeTab} tapping={this.tapping} />} />
             <Route path='/login' exact component={Login} />
             <Route path='/signup' exact component={Signup} />
             <Route path='/admin' exact component={Admin} />
