@@ -2,8 +2,6 @@ import axios from 'axios';
 const serverROOT = 'https://sc-back.herokuapp.com';
 // const serverROOT = 'http://localhost:5000';
 
-
-
 export const addToDaily = (foods) => {
 	console.log('action adding daily food', foods);
 	 return (dispatch) => {
@@ -122,80 +120,3 @@ export const updateCustomFood = (food) => {
 	 });
  }
 }
-
-// export const toggleEditing = (id) => {
-//     return ({
-//         type: 'TOGGLE_EDITING',
-//         payload: id
-//     });
-// }
-
-// export const toggleSaving = (id) => {
-//     return ({
-//         type: 'TOGGLE_SAVING',
-//         payload: id
-//     });
-// }
-
-// export const toggleActive = (id) => {
-// 	return ({
-// 		 type: 'TOGGLE_ACTIVE',
-// 		 payload: id
-// 	});
-// }
-
-// export const amountOnChange = (data) => {
-// 	return ({
-// 		 type: 'AMOUNT_ON_CHANGE',
-// 		 payload: data
-// 	});
-// }
-
-
-
-// export const resetToggle = () => {
-// 	return ({
-// 		 type: 'RESET_TOGGLE',
-// 	});
-// }
-
-
-// export const getCustomFood = (user) => {
-// 	console.log('getting custom foods');
-// 	return (dispatch) => {
-// 	 axios.get(`http://localhost:5000/customFoods`, user).then(res => {
-// 		 dispatch({
-// 			 type: 'GOT_CUSTOM_FOODS',
-// 			 payload: res.data
-// 		 });
-// 	 });
-//  }
-// }
-
-// export const getSystemFood = () => {
-// 	return (dispatch) => {
-// 	 axios.get(`http://localhost:5000/systemFoods}`).then(res => {
-// 		 dispatch({
-// 			 type: 'GOT_SYSTEM_FOODS',
-// 			 payload: res.data
-// 		 });
-// 	 });
-//  }
-// }
-
-// export const signIn = (user) => {
-//   if(user.email !== '' || user.password !== ''){
-//     return (dispatch) => {
-//       axios.post('http://localhost:5000/api/user/login', user)
-//       .then(res => {
-//         if(res.status === 200){
-//           localStorage.setItem('user', res.data.name);
-//           dispatch({
-//             type: LOGGED_IN,
-//             payload: res.data.name
-//           });          
-//         }
-//       });
-//     }
-//   }
-// }

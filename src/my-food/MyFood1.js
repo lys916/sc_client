@@ -273,6 +273,7 @@ class MyFood1 extends React.Component {
 		const dateToFormat = date.addDays(this.state.day);
 
 		return (
+			<div>
 			<div className="mf">
 				<div className="sticky">
 
@@ -286,16 +287,19 @@ class MyFood1 extends React.Component {
 						username={this.props.user.username}
 					/>
 
-					<SearchBar handleSearch={this.handleSearch} />
-					<div className="title">
-					<div className="nut align-left">Added</div>
+					{customCopy.length > 0 ? <SearchBar handleSearch={this.handleSearch} /> : null}
+
+					{customCopy.length > 0 ? <div className="title">
+						<div className="nut align-left">Added</div>
 						<div className="nut">Amount</div>
 						<div className="nut">Fat</div>
 						<div className="nut">Carb</div>
 						<div className="nut">Protein</div>
 						<div className="nut">Calories</div>
-					</div>
+					</div> : null}
+					
 				</div>
+
 				<TransitionGroup>
 					{customCopy.map((food, index) => {
 
@@ -370,6 +374,9 @@ class MyFood1 extends React.Component {
 
 					})}
 				</TransitionGroup>
+				
+			</div>
+			{customCopy.length < 1 ? <div>You currently don't have any food. Start by creating a new food.</div> : null}
 			</div>
 		)
 	}

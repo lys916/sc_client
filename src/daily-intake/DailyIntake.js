@@ -212,17 +212,18 @@ class DailyIntake extends React.Component {
 				</div>
 
 				{/* individual food list */}
-				<FoodIntake 
+				{this.props.dailyFoodIntake.length > 0 ? <FoodIntake 
 					handleDeleteFood={this.handleDeleteFood} 
 					handleShowMenu={this.handleShowMenu} 
 					showMenu={this.state.showMenu} 
 					foods={this.props.dailyFoodIntake}
 					isLoading={this.props.isLoading}
-				/>
+				/> : null}
+				
 
 				{/* show this when user haven't added any daily food */}
 				<div className="tab-tobegin">
-					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food' : null}
+					{this.props.dailyFoodIntake.length < 1 && !this.props.isLoading ? 'You have no daily food for this date. Start by adding a new food.' : null}
 				</div>
 
 				{/* when used haven't set their goals -  modal */}

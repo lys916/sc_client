@@ -28,13 +28,14 @@ class FoodIntake extends React.Component {
 	render() {
 		return (
 			<div className="mf" style={{position: 'relative'}}>
-               <div className="title" style={{position: 'sticky', top: '199px', borderTop: '1px solid #dedede', zIndex: '2', background: 'white'}}>
+				{this.props.dailyFoods.length > 0 ? <div className="title" style={{position: 'sticky', top: '199px', borderTop: '1px solid #dedede', zIndex: '2', background: 'white'}}>
                   <div className="nut align-left">Amount</div>
                   <div className="nut">Fat</div>
                   <div className="nut">Carb</div>
                   <div className="nut">Protein</div>
                   <div className="nut">Calories</div>
-				</div>
+				</div> : null }
+               
 				{!this.props.isLoading ?
 					<TransitionGroup>
 						{this.props.dailyFoods.map((food, index) => {
